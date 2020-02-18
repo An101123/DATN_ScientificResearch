@@ -14,11 +14,12 @@ namespace ScientificResearch.Core.Business.Models.ScientificReportTypes
         public void GetScientificReportTypeFromModel(ScientificReportType scientificReportType)
         {
             scientificReportType.Name = Name;
+
         }
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
-            if (Name.Equals(""))
+            if (string.IsNullOrEmpty(Name))
             {
                 yield return new ValidationResult("ScientificReportType name is required!", new string[] { "Name" });
             }

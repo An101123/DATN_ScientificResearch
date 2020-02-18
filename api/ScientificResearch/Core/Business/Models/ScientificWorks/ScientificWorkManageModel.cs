@@ -32,11 +32,11 @@ namespace ScientificResearch.Core.Business.Models.ScientificWorks
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validation)
         {
-            if (Name.Equals(""))
+            if (string.IsNullOrEmpty(Name))
             {
                 yield return new ValidationResult("Name is required!", new string[] { "Name" });
             }
-            if (LevelId == null)
+            if (LevelId == Guid.Empty)
             {
                 yield return new ValidationResult("Level is required!", new string[] { "LevelId" });
             }
@@ -46,15 +46,15 @@ namespace ScientificResearch.Core.Business.Models.ScientificWorks
             {
                 yield return new ValidationResult("Level is not found!", new string[] { "LevelId" });
             }
-            if (LecturerId == null)
+            if (LecturerId == Guid.Empty)
             {
-                yield return new ValidationResult("Level is required!", new string[] { "LevelId" });
+                yield return new ValidationResult("Lecturer is required!", new string[] { "LecturerId" });
             }
             var lecturerRepository = IoCHelper.GetInstance<IRepository<Lecturer>>();
             var lecturer = lecturerRepository.GetAll().FirstOrDefault(x => x.Id == LecturerId);
             if (lecturer == null)
             {
-                yield return new ValidationResult("Level is not found!");
+                yield return new ValidationResult("Lecturer is not found!");
             }
         }
 

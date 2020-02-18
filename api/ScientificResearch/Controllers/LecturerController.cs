@@ -12,7 +12,7 @@ using ScientificResearch.Core.Business.Services;
 namespace ScientificResearch.Controllers
 {
     [Route("api/lecturers")]
-    [ApiController]
+    [ValidateModel]
     public class LecturerController : ControllerBase
     {
         private readonly ILecturerService _lecturerService;

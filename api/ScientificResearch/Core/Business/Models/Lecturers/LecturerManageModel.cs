@@ -21,7 +21,7 @@ namespace ScientificResearch.Core.Business.Models.Lecturers
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validation)
         {
-            if (Name.Equals(""))
+            if (string.IsNullOrEmpty(Name))
             {
                 yield return new ValidationResult("Name is required!", new string[] { "Name" });
             }

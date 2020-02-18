@@ -46,8 +46,9 @@ namespace ScientificResearch
             services.AddScoped<IScientificWorkService, ScientificWorkService>();
             services.AddScoped<ILecturerService, LecturerService>();
             services.AddScoped<IUserService, UserService>();
-
-
+            services.AddScoped<INewsService, NewsService>();
+            services.AddScoped<IScientificReportService, ScientificReportService>();
+            services.AddScoped<IScientificReportTypeService, ScientificReportTypeService>();
 
             //Register Repository
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));

@@ -38,9 +38,9 @@ namespace Api.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody] LevelManageModel levelManagerModel)
+        public async Task<IActionResult> Create([FromBody] LevelManageModel levelManageModel)
         {
-            var response = await _levelService.CreateLevelAsync(levelManagerModel);
+            var response = await _levelService.CreateLevelAsync(levelManageModel);
             return new CustomActionResult(response);
         }
 

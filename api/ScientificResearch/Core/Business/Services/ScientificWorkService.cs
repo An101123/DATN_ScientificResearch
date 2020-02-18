@@ -139,14 +139,14 @@ namespace ScientificResearch.Core.Business.Services
             }
             else
             {
-                var existedScientificWorkOnMenu = await _scientificWorkResponstory.FetchFirstAsync(x => x.Name == scientificWorkManageModel.Name && x.LevelId == scientificWorkManageModel.LevelId && x.Id != id);
-                if (existedScientificWorkOnMenu != null)
+                var existedScientificWork = await _scientificWorkResponstory.FetchFirstAsync(x => x.Name == scientificWorkManageModel.Name && x.LevelId == scientificWorkManageModel.LevelId && x.Id != id);
+                if (existedScientificWork != null)
                 {
                     var level = await _scientificWorkResponstory.GetByIdAsync(scientificWorkManageModel.LevelId);
                     return new ResponseModel()
                     {
                         StatusCode = System.Net.HttpStatusCode.BadRequest,
-                        Message = "ScientificWork " + existedScientificWorkOnMenu.Name + " already created on Level " + level.Name,
+                        Message = "ScientificWork " + existedScientificWork.Name + " already created on Level " + level.Name,
                     };
                 }
                 else

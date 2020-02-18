@@ -12,7 +12,7 @@ using ScientificResearch.Core.Business.Services;
 namespace ScientificResearch.Controllers
 {
     [Route("api/user")]
-    [ApiController]
+    [ValidateModel]
     public class UserController : Controller
     {
         private readonly IUserService _userService;

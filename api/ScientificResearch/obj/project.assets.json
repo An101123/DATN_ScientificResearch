@@ -8557,11 +8557,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\an.tran\\Desktop\\ScientificResearch\\ScientificResearch\\ScientificResearch.csproj",
+      "projectUniqueName": "C:\\Users\\an.tran\\Desktop\\DATN_ScientificResearch\\api\\ScientificResearch\\ScientificResearch.csproj",
       "projectName": "ScientificResearch",
-      "projectPath": "C:\\Users\\an.tran\\Desktop\\ScientificResearch\\ScientificResearch\\ScientificResearch.csproj",
+      "projectPath": "C:\\Users\\an.tran\\Desktop\\DATN_ScientificResearch\\api\\ScientificResearch\\ScientificResearch.csproj",
       "packagesPath": "C:\\Users\\an.tran\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\an.tran\\Desktop\\ScientificResearch\\ScientificResearch\\obj\\",
+      "outputPath": "C:\\Users\\an.tran\\Desktop\\DATN_ScientificResearch\\api\\ScientificResearch\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\",

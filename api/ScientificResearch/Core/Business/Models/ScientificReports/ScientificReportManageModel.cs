@@ -17,28 +17,41 @@ namespace ScientificResearch.Core.Business.Models.ScientificReports
 
         public Guid ScientificReportTypeId { get; set; }
 
-        public void GetScientificWorkFromModel(ScientificReport scientificReport)
+        public Guid LecturerId { get; set; }
+
+        public void GetScientificReportFromModel(ScientificReport scientificReport)
         {
             scientificReport.Name = Name;
             scientificReport.Content = Content;
             scientificReport.ScientificReportTypeId = ScientificReportTypeId;
+            scientificReport.LecturerId = LecturerId;
         }
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validation)
         {
-            if (Name.Equals(""))
+            if (string.IsNullOrEmpty(Name))
             {
                 yield return new ValidationResult("Name is required!", new string[] { "Name" });
             }
-            if (ScientificReportTypeId == null)
+            if (ScientificReportTypeId == Guid.Empty)
             {
-                yield return new ValidationResult("ScientificReport is required!", new string[] { "ScientificReportTypeId" });
+                yield return new ValidationResult("Scientific Report Type is required!", new string[] { "ScientificReportTypeId" });
             }
-            var scientificReportRepository = IoCHelper.GetInstance<IRepository<Level>>();
-            var scientificReport = scientificReportRepository.GetAll().FirstOrDefault(x => x.Id == ScientificReportTypeId);
-            if (scientificReport == null)
+            var scientificReportTypeRepository = IoCHelper.GetInstance<IRepository<ScientificReportType>>();
+            var scientificReportType = scientificReportTypeRepository.GetAll().FirstOrDefault(x => x.Id == ScientificReportTypeId);
+            if (scientificReportType == null)
             {
-                yield return new ValidationResult("ScientificReport is not found!", new string[] { "ScientificReportTypeId" });
+                yield return new ValidationResult("Scientific Report Type is not found!", new string[] { "ScientificReportTypeId" });
+            }
+            if (LecturerId == Guid.Empty)
+            {
+                yield return new ValidationResult("Lecturer is required!", new string[] { "LecturerId" });
+            }
+            var lecturerRepository = IoCHelper.GetInstance<IRepository<Lecturer>>();
+            var lecturer = lecturerRepository.GetAll().FirstOrDefault(x => x.Id == LecturerId);
+            if (lecturer == null)
+            {
+                yield return new ValidationResult("Lecturer is not found!");
             }
         }
     }

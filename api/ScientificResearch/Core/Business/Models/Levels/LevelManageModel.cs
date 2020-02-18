@@ -18,7 +18,7 @@ namespace ScientificResearch.Core.Business.Models.Levels
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
-            if (Name.Equals(""))
+            if (string.IsNullOrEmpty(Name))
             {
                 yield return new ValidationResult("Level name is required!", new string[] { "Name" });
             }

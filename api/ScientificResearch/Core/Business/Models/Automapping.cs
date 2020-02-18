@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using ScientificResearch.Core.Business.Models.Lecturers;
 using ScientificResearch.Core.Business.Models.Levels;
+using ScientificResearch.Core.Business.Models.News_s;
 using ScientificResearch.Core.Business.Models.ScientificReports;
 using ScientificResearch.Core.Business.Models.ScientificReportTypes;
 using ScientificResearch.Core.Business.Models.ScientificWorks;
@@ -23,6 +24,9 @@ namespace ScientificResearch.Core.Business.Models
             CreateMap<LecturerManageModel, Lecturer>();
             CreateMap<ScientificReportTypeManageModel, ScientificReportType>();
             CreateMap<UserManageModel, User>();
+            CreateMap<NewsManageModel, News>();
+            CreateMap<ScientificReportManageModel, ScientificReport>();
+            CreateMap<ScientificReportTypeManageModel, ScientificReportType>();
         }
     }
 }
