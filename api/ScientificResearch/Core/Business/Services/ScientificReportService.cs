@@ -28,12 +28,15 @@ namespace ScientificResearch.Core.Business.Services
     public class ScientificReportService : IScientificReportService
     {
         private readonly IRepository<ScientificReport> _scientificReportResponstory;
+        private readonly IRepository<ScientificReportType> _scientificReportTypeResponstory;
+
         private readonly IMapper _mapper;
 
-        public ScientificReportService(IRepository<ScientificReport> scientificReportResponstory, IMapper mapper)
+        public ScientificReportService(IRepository<ScientificReport> scientificReportResponstory, IRepository<ScientificReportType> scientificReportTypeResponstory, IMapper mapper)
         {
             _scientificReportResponstory = scientificReportResponstory;
             _mapper = mapper;
+            _scientificReportTypeResponstory = scientificReportTypeResponstory;
         }
 
         #region private method
@@ -101,20 +104,23 @@ namespace ScientificResearch.Core.Business.Services
 
         public async Task<ResponseModel> CreateScientificReportAsync(ScientificReportManageModel scientificReportManageModel)
         {
-            var scientificReport = await _scientificReportResponstory.FetchFirstAsync(x => x.Name == scientificReportManageModel.Name && x.ScientificReportTypeId == scientificReportManageModel.ScientificReportTypeId);
+            var scientificReport = await _scientificReportResponstory.FetchFirstAsync(x => x.Name == scientificReportManageModel.Name && x.ScientificReportTypeId == scientificReportManageModel.ScientificReportTypeId && x.UserId == scientificReportManageModel.UserId);
             if (scientificReport != null)
             {
                 return new ResponseModel()
                 {
                     StatusCode = System.Net.HttpStatusCode.BadRequest,
-                    Message = "This Scientific Report is exist. Can you try again with the update!"
+                    Message = "This ScientificWork is exist. Can you try again with the update!"
                 };
             }
             else
             {
+                var scientificReportType = await _scientificReportTypeResponstory.GetByIdAsync(scientificReportManageModel.ScientificReportTypeId);
                 scientificReport = _mapper.Map<ScientificReport>(scientificReportManageModel);
+                scientificReport.ScientificReportType = scientificReportType;
 
                 await _scientificReportResponstory.InsertAsync(scientificReport);
+                scientificReport = await GetAll().FirstOrDefaultAsync(x => x.Id == scientificReport.Id);
                 return new ResponseModel()
                 {
                     StatusCode = System.Net.HttpStatusCode.OK,

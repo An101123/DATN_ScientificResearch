@@ -1,5 +1,6 @@
 ﻿using ScientificResearch.Core.Business.Models.Lecturers;
 using ScientificResearch.Core.Business.Models.ScientificReportTypes;
+using ScientificResearch.Core.Business.Models.Users;
 using ScientificResearch.Entities;
 using System;
 using System.Collections.Generic;
@@ -24,8 +25,7 @@ namespace ScientificResearch.Core.Business.Models.ScientificReports
                 Content = scientificReport.Content;
                 ScientificReportType = new ScientificReportTypeViewModel(scientificReport.ScientificReportType);
                 Lecturer = new LecturerViewModel(scientificReport.Lecturer);
-
-                //Lecturer = new LecturerViewModel;
+                User = new UserViewModel(scientificReport.User);
             }
         }
         public Guid Id { get; set; }
@@ -37,6 +37,8 @@ namespace ScientificResearch.Core.Business.Models.ScientificReports
         public ScientificReportTypeViewModel ScientificReportType { get; set; }
 
         public LecturerViewModel Lecturer { get; set; }
+
+        public UserViewModel User { get; set; }
 
     }
 }

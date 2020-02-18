@@ -19,12 +19,16 @@ namespace ScientificResearch.Core.Business.Models.ScientificReports
 
         public Guid LecturerId { get; set; }
 
+        public Guid UserId { get; set; }
+
+
         public void GetScientificReportFromModel(ScientificReport scientificReport)
         {
             scientificReport.Name = Name;
             scientificReport.Content = Content;
             scientificReport.ScientificReportTypeId = ScientificReportTypeId;
             scientificReport.LecturerId = LecturerId;
+            scientificReport.UserId = UserId;
         }
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validation)

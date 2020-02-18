@@ -19,13 +19,21 @@ namespace ScientificResearch.Core.Business.Models
         public Automapping()
         {
             CreateMap<LevelManageModel, Level>();
+
             CreateMap<ScientificWorkManageModel, ScientificWork>();
+
             CreateMap<ScientificReportManageModel, ScientificReport>();
+
             CreateMap<LecturerManageModel, Lecturer>();
+
             CreateMap<ScientificReportTypeManageModel, ScientificReportType>();
+
             CreateMap<UserManageModel, User>();
+
             CreateMap<NewsManageModel, News>();
+
             CreateMap<ScientificReportManageModel, ScientificReport>();
+
             CreateMap<ScientificReportTypeManageModel, ScientificReportType>();
         }
     }

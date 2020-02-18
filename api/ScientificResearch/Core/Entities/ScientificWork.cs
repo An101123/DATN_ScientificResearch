@@ -19,15 +19,12 @@ namespace ScientificResearch.Entities
         public DateTime Time { get; set; }
 
         public Guid LevelId { get; set; }
-
-        public Guid LecturerId { get; set; }
-
-        public Guid UserId { get; set; }
-
         public virtual Level Level { get; set; }
 
+        public Guid LecturerId { get; set; }
         public virtual Lecturer Lecturer { get; set; }
 
+        public Guid UserId { get; set; }
         public virtual User User { get; set; }
     }
 }
