@@ -10,7 +10,7 @@ namespace ScientificResearch.Core.Business.Models.Users
     {
         [StringLength(512)]
         [Required]
-        public string Username { get; set; }
+        public string Email { get; set; }
 
         [StringLength(512)]
         [Required]

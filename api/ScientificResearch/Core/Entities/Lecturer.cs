@@ -16,6 +16,10 @@ namespace ScientificResearch.Entities
         [Required]
         public string Name { get; set; }
 
+        public string Faculty { get; set; }
+
+        public DateTime DateOfBirth { get; set; }
+
         public string ScientificWorkName { get; set; }
 
         public string ScientificReportName { get; set; }

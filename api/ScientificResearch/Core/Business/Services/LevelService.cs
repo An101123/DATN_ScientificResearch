@@ -15,6 +15,7 @@ namespace ScientificResearch.Core.Business.Services
 {
     public interface ILevelService
     {
+        Task<List<LevelViewModel>> GetAllLevel();
         Task<PagedList<LevelViewModel>> ListLevelAsync(RequestListViewModel requestListViewModel);
         Task<Level> GetLevelByIdAsync(Guid? id);
         Task<ResponseModel> CreateLevelAsync(LevelManageModel levelManagerModel);
@@ -34,6 +35,7 @@ namespace ScientificResearch.Core.Business.Services
 
         #region private method
 
+
         private IQueryable<Level> GetAll()
         {
             return _repository.GetAll().Where(i => !i.RecordDeleted);
@@ -49,6 +51,11 @@ namespace ScientificResearch.Core.Business.Services
         }
 
         #endregion
+        public async Task<List<LevelViewModel>> GetAllLevel()
+        {
+            var list = await GetAll().Select(x => new LevelViewModel(x)).ToListAsync();
+            return list;
+        }
 
         public async Task<PagedList<LevelViewModel>> ListLevelAsync(RequestListViewModel requestListViewModel)
         {

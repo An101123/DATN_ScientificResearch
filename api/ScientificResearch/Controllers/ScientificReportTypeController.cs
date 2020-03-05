@@ -11,7 +11,7 @@ using ScientificResearch.Core.Business.Services;
 
 namespace ScientificResearch.Controllers
 {
-    [Route("api/scientificReportType")]
+    [Route("api/scientificReportTypes")]
     [ValidateModel]
     public class ScientificReportTypeController : ControllerBase
     {
@@ -22,6 +22,12 @@ namespace ScientificResearch.Controllers
             _scientificReportTypeService = scientificReportTypeService;
         }
 
+        [HttpGet("all")]
+        public async Task<IActionResult> GetAllScientificReportType()
+        {
+            var scientificReportType = await _scientificReportTypeService.GetAllScientificReportType();
+            return Ok(scientificReportType);
+        }
         [HttpGet]
         public async Task<IActionResult> GetAll([FromQuery] RequestListViewModel requestListViewModel)
         {

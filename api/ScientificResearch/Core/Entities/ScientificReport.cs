@@ -15,6 +15,8 @@ namespace ScientificResearch.Entities
 
         public string Content { get; set; }
 
+        public DateTime Time { get; set; }
+
         public Guid ScientificReportTypeId { get; set; }
         public virtual ScientificReportType ScientificReportType { get; set; }
 

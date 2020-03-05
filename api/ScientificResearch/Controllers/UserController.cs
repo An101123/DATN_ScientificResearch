@@ -60,7 +60,7 @@ namespace ScientificResearch.Controllers
         }
 
         [HttpPost("login")]
-        public async Task<IActionResult> Login(UserLoginModel userLoginModel)
+        public async Task<IActionResult> Login([FromBody] UserLoginModel userLoginModel)
         {
             var responseModel = await _userService.LoginAsync(userLoginModel);
             return new CustomActionResult(responseModel);

@@ -18,7 +18,8 @@ namespace ScientificResearch.Core.Business.Models.Lecturers
             {
                 Id = lecturer.Id;
                 Name = lecturer.Name;
-
+                Faculty = lecturer.Faculty;
+                DateOfBirth = lecturer.DateOfBirth;
             }
         }
 
@@ -26,5 +27,8 @@ namespace ScientificResearch.Core.Business.Models.Lecturers
 
         public string Name { get; set; }
 
+        public string Faculty { get; set; }
+
+        public DateTime DateOfBirth { get; set; }
     }
 }

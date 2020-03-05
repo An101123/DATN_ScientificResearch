@@ -22,6 +22,13 @@ namespace ScientificResearch.Controllers
             _lecturerService = lecturerService;
         }
 
+        [HttpGet("all")]
+        public async Task<IActionResult> GetAllLecturer()
+        {
+            var lecturer = await _lecturerService.GetAllLecturer();
+            return Ok(lecturer);
+        }
+
         [HttpGet]
         public async Task<IActionResult> GetAll([FromQuery] RequestListViewModel requestListViewModel)
         {

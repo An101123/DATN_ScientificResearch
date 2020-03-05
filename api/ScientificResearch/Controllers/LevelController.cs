@@ -23,6 +23,14 @@ namespace Api.Controllers
             _levelService = levelService;
         }
 
+
+        [HttpGet("all")]
+        public async Task<IActionResult> GetAllLevel()
+        {
+            var level = await _levelService.GetAllLevel();
+            return Ok(level);
+        }
+
         [HttpGet]
         public async Task<IActionResult> GetAll([FromQuery] RequestListViewModel requestListViewModel)
         {

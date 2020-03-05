@@ -19,11 +19,14 @@ namespace ScientificResearch.Core.Business.Models.ScientificReportTypes
             {
                 Id = scientificReportType.Id;
                 Name = scientificReportType.Name;
+                Score = scientificReportType.Score;
             }
         }
 
         public Guid Id { get; set; }
 
         public string Name { get; set; }
+
+        public int Score { get; set; }
     }
 }

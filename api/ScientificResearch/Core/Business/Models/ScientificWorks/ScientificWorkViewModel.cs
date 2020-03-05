@@ -25,7 +25,7 @@ namespace ScientificResearch.Core.Business.Models.ScientificWorks
                 Content = scientificWork.Content;
                 Level = new LevelViewModel(scientificWork.Level);
                 Lecturer = new LecturerViewModel(scientificWork.Lecturer);
-                User = new UserViewModel(scientificWork.User);
+                //User = new UserViewModel(scientificWork.User);
                 //Lecturer = new LecturerViewModel;
             }
         }

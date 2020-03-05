@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Api.Core.Common.Extentions;
 using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -17,9 +18,11 @@ using ScientificResearch.Core.Business.Filters;
 using ScientificResearch.Core.Business.IoC;
 using ScientificResearch.Core.Business.Models.Levels;
 using ScientificResearch.Core.Business.Services;
+using ScientificResearch.Core.Common.Utilities;
 using ScientificResearch.Core.DataAccess;
 using ScientificResearch.Core.DataAccess.Repository.Base;
 using ScientificResearch.Entities;
+using ScientificResearch.Entities.Enums;
 using ScientificResearch.Options;
 
 namespace ScientificResearch
@@ -37,7 +40,17 @@ namespace ScientificResearch
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContextPool<ScientificResearchDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("ScientificResearch")));
-            services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson();
+
+            // Add service and create Policy with options
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy",
+                  builder => builder.AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()
+                    );
+            });
 
             services.AddAutoMapper(typeof(Startup));
 
@@ -70,6 +83,8 @@ namespace ScientificResearch
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseCors("CorsPolicy");
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -99,6 +114,7 @@ namespace ScientificResearch
 
             // Auto run migration
             RunMigration(app);
+            InitUserAdmin();
         }
         private void RunMigration(IApplicationBuilder app)
         {
@@ -106,6 +122,30 @@ namespace ScientificResearch
             {
                 scope.ServiceProvider.GetRequiredService<ScientificResearchDbContext>().Database.Migrate();
             }
+        }
+        private void InitUserAdmin()
+        {
+            var userRepository = IoCHelper.GetInstance<IRepository<User>>();
+            var user = new User();
+            user.Username = "antran";
+            user.FullName = "Super Admin";
+            user.Email = "an.tran@orientsoftware.com";
+            user.Password = "orient@123";
+
+            /*var password = "orient@123";
+            password.GeneratePassword(out string saltKey, out string hashPass);
+
+            user.Password = hashPass;*/
+            user.Gender = UserEnums.UserGender.Male;
+
+            var users = new[]
+            {
+                user
+            };
+
+            userRepository.GetDbContext().Users.AddIfNotExist(x => x.Email, users
+                );
+            userRepository.GetDbContext().SaveChanges();
         }
     }
 }

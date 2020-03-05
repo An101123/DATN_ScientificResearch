@@ -19,12 +19,15 @@ namespace ScientificResearch.Core.Business.Models.Levels
             {
                 Id = level.Id;
                 Name = level.Name;
+                Score = level.Score;
             }
         }
 
         public Guid Id { get; set; }
 
         public string Name { get; set; }
+
+        public int Score { get; set; }
     }
 }
   

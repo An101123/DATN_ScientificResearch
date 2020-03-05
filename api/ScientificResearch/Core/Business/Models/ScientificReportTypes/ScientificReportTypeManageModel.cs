@@ -11,9 +11,12 @@ namespace ScientificResearch.Core.Business.Models.ScientificReportTypes
     {
         public string Name { get; set; }
 
+        public int Score { get; set; }
+
         public void GetScientificReportTypeFromModel(ScientificReportType scientificReportType)
         {
             scientificReportType.Name = Name;
+            scientificReportType.Score = Score;
 
         }
 

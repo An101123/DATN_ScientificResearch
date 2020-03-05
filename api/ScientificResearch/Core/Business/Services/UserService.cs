@@ -150,7 +150,7 @@ namespace ScientificResearch.Core.Business.Services
 
         public async Task<ResponseModel> LoginAsync(UserLoginModel userLoginModel)
         {
-            var user = await GetAll().FirstOrDefaultAsync(x => x.Username == userLoginModel.Username && x.Password == userLoginModel.Password);
+            var user = await GetAll().FirstOrDefaultAsync(x => x.Email == userLoginModel.Email && x.Password == userLoginModel.Password);
             if (user == null)
             {
                 return new ResponseModel

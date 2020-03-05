@@ -17,6 +17,8 @@ namespace ScientificResearch.Core.Business.Services
 {
     public interface ILecturerService
     {
+        Task<List<LecturerViewModel>> GetAllLecturer();
+
         Task<PagedList<LecturerViewModel>> ListLecturerAsync(RequestListViewModel requestListViewModel);
         Task<LecturerViewModel> GetLecturerByIdAsync(Guid? id);
         Task<ResponseModel> CreateLecturerAsync(LecturerManageModel lecturerManageModel);
@@ -59,12 +61,18 @@ namespace ScientificResearch.Core.Business.Services
 
         #endregion
 
+        public async Task<List<LecturerViewModel>> GetAllLecturer()
+        {
+            var list = await GetAll().Select(x => new LecturerViewModel(x)).ToListAsync();
+            return list;
+        }
+
         public async Task<PagedList<LecturerViewModel>> ListLecturerAsync(RequestListViewModel requestListViewModel)
         {
             var list = await GetAll()
                 .Where(x => (!requestListViewModel.IsActive.HasValue || x.RecordActive == requestListViewModel.IsActive)
                 && (string.IsNullOrEmpty(requestListViewModel.Query)
-                    || (x.Name.ToString().Contains(requestListViewModel.Query)
+                    || (x.Name.Contains(requestListViewModel.Query)
                     )))
                 .Select(x => new LecturerViewModel(x)).ToListAsync();
 
@@ -116,26 +124,14 @@ namespace ScientificResearch.Core.Business.Services
         //}
         public async Task<ResponseModel> CreateLecturerAsync(LecturerManageModel lecturerManageModel)
         {
-            var lecturer = await _lecturerRepository.FetchFirstAsync(x => x.Name == lecturerManageModel.Name);
-            if (lecturer != null)
+            var lecturer = new Lecturer();
+            lecturerManageModel.GetLecturerFromModel(lecturer);
+            await _lecturerRepository.InsertAsync(lecturer);
+            return new ResponseModel
             {
-                return new ResponseModel
-                {
-                    StatusCode = System.Net.HttpStatusCode.BadRequest,
-                    Message = "This Lecturer is exist"
-                };
-            }
-            else
-            {
-                lecturer = new Lecturer();
-                lecturerManageModel.GetLecturerFromModel(lecturer);
-                await _lecturerRepository.InsertAsync(lecturer);
-                return new ResponseModel
-                {
-                    StatusCode = System.Net.HttpStatusCode.OK,
-                    Data = new LecturerViewModel(lecturer),
-                };
-            }
+                StatusCode = System.Net.HttpStatusCode.OK,
+                Data = new LecturerViewModel(lecturer),
+            };
         }
 
         public async Task<ResponseModel> UpdateLecturerAsync(Guid id, LecturerManageModel lecturerManageModel)

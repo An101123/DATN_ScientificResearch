@@ -15,6 +15,8 @@ namespace ScientificResearch.Core.Business.Services
 {
     public interface IScientificReportTypeService
     {
+        Task<List<ScientificReportTypeViewModel>> GetAllScientificReportType();
+
         Task<PagedList<ScientificReportTypeViewModel>> ListScientificReportTypeAsync(RequestListViewModel requestListViewModel);
         Task<ScientificReportType> GetScientificReportTypeByIdAsync(Guid? id);
         Task<ResponseModel> CreateScientificReportTypeAsync(ScientificReportTypeManageModel scientificReportTypeManagerModel);
@@ -33,6 +35,12 @@ namespace ScientificResearch.Core.Business.Services
         }
 
         #region private method
+
+        public async Task<List<ScientificReportTypeViewModel>> GetAllScientificReportType()
+        {
+            var list = await GetAll().Select(x => new ScientificReportTypeViewModel(x)).ToListAsync();
+            return list;
+        }
 
         private IQueryable<ScientificReportType> GetAll()
         {
