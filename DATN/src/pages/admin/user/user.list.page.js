@@ -1,19 +1,22 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
-import { Row, Col, Button, FormGroup, Table } from "reactstrap";
+import { Row, Col, Button, FormGroup, Label, Input, Table } from "reactstrap";
 import Form from "react-validation/build/form";
+import Datetime from "react-datetime";
+import moment from "moment";
 import ModalConfirm from "../../../components/modal/modal-confirm";
 import Pagination from "../../../components/pagination/Pagination";
 import ModalInfo from "../../../components/modal/modal-info";
 import ValidationInput from "../../../components/common/validation-input";
 import { toastSuccess, toastError } from "../../../helpers/toast.helper";
 import lodash from "lodash";
-import { getScientificReportTypeList } from "../../../actions/scientificReportType.list.action";
-import ApiScientificReportType from "../../../api/api.scientificReportType";
+import { getUserList } from "../../../actions/user.list.action";
+import ApiUser from "../../../api/api.user";
 import { pagination } from "../../../constant/app.constant";
+import gender from "../../../constant/gender";
 import "../../../pages/admin/select-custom.css";
 
-class ScientificReportTypeListPage extends Component {
+class UserListPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -27,7 +30,7 @@ class ScientificReportTypeListPage extends Component {
       },
       query: ""
     };
-    this.delayedCallback = lodash.debounce(this.search, 1000);
+    this.delayedCallback = lodash.debounce(this.search, 1);
   }
 
   toggleDeleteModal = () => {
@@ -54,16 +57,20 @@ class ScientificReportTypeListPage extends Component {
   };
 
   showAddNew = () => {
-    let title = "Tạo cấp công trình khoa học";
-    let scientificReportType = {
-      name: "",
-      score: ""
+    let title = "Tạo mới tài khoản";
+    let user = {
+      username: "",
+      password: "",
+      fullname: "",
+      email: "",
+      gender: "",
+      dateOfBirth: null
     };
-    this.toggleModalInfo(scientificReportType, title);
+    this.toggleModalInfo(user, title);
   };
 
   showUpdateModal = item => {
-    let title = "Chỉnh sửa loại bài báo, báo cáo khoa học";
+    let title = "Chỉnh sửa tài khoản";
     this.toggleModalInfo(item, title);
   };
 
@@ -73,6 +80,7 @@ class ScientificReportTypeListPage extends Component {
     let item = Object.assign({}, this.state.item);
     item[inputName] = inputValue;
     this.setState({ item });
+    console.log(item);
   };
 
   search = e => {
@@ -85,7 +93,7 @@ class ScientificReportTypeListPage extends Component {
         query: e.target.value
       },
       () => {
-        this.getScientificReportTypeList();
+        this.getUserList();
       }
     );
   };
@@ -103,95 +111,124 @@ class ScientificReportTypeListPage extends Component {
           skip: e.selected + 1
         }
       },
-      () => this.getScientificReportTypeList()
+      () => this.getUserList()
     );
   };
 
-  getScientificReportTypeList = () => {
+  getUserList = () => {
     let params = Object.assign({}, this.state.params, {
       query: this.state.query
     });
-    this.props.getScientificReportTypeList(params);
+    console.log(params);
+    this.props.getUserList(params);
   };
 
-  addScientificReportType = async () => {
+  addUser = async () => {
     console.log("state ==================");
     console.log(this.state);
-    const { name, score } = this.state.item;
-    const scientificReportType = { name, score };
+    const {
+      username,
+      password,
+      fullname,
+      email,
+      gender,
+      dateOfBirth
+    } = this.state.item;
+    const user = {
+      username,
+      password,
+      fullname,
+      email,
+      gender,
+      dateOfBirth
+    };
     try {
-      await ApiScientificReportType.postScientificReportType(
-        scientificReportType
-      );
+      await ApiUser.postUser(user);
       this.toggleModalInfo();
-      this.getScientificReportTypeList();
+      this.getUserList();
       toastSuccess("Tạo mới thành công");
     } catch (err) {
       toastError(err);
     }
   };
 
-  updateScientificReportType = async () => {
-    const { id, name, score } = this.state.item;
-    const scientificReportType = { id, name, score };
+  updateUser = async () => {
+    const {
+      id,
+      username,
+      password,
+      fullname,
+      email,
+      gender,
+      DateOfBirth
+    } = this.state.item;
+    const user = {
+      id,
+      username,
+      password,
+      fullname,
+      email,
+      gender,
+      DateOfBirth
+    };
     try {
-      await ApiScientificReportType.updateScientificReportType(
-        scientificReportType
-      );
+      await ApiUser.updateUser(user);
       this.toggleModalInfo();
-      this.getScientificReportTypeList();
-      toastSuccess("Đã chỉnh sửa");
+      this.getUserList();
+      toastSuccess("Chỉnh sửa thành công");
     } catch (err) {
       toastError(err);
     }
   };
 
-  deleteScientificReportType = async () => {
+  deleteUser = async () => {
     try {
-      await ApiScientificReportType.deleteScientificReportType(
-        this.state.itemId
-      );
+      await ApiUser.deleteUser(this.state.itemId);
       this.toggleDeleteModal();
-      this.getScientificReportTypeList();
+      this.getUserList();
       toastSuccess("Xóa thành công");
     } catch (err) {
       toastError(err);
     }
   };
 
-  saveScientificReportType = () => {
+  saveUser = () => {
     let { id } = this.state.item;
     if (id) {
-      this.updateScientificReportType();
+      this.updateUser();
     } else {
-      this.addScientificReportType();
+      this.addUser();
     }
   };
 
   onSubmit(e) {
     e.preventDefault();
     this.form.validateAll();
-    this.saveScientificReportType();
+    this.saveUser();
   }
 
+  onDateOfBirthChange = el => {
+    let inputValue = el._d;
+    let item = Object.assign({}, this.state.item);
+    item["dateOfBirth"] = inputValue;
+    this.setState({ item });
+  };
+
   componentDidMount() {
-    this.getScientificReportTypeList();
+    this.getUserList();
   }
 
   render() {
     const { isShowDeleteModal, isShowInfoModal, item } = this.state;
-    const {
-      scientificReportTypePagedList
-    } = this.props.scientificReportTypePagedListReducer;
-    const { sources, pageIndex, totalPages } = scientificReportTypePagedList;
+    const { userPagedList } = this.props.userPagedListReducer;
+    const { sources, pageIndex, totalPages } = userPagedList;
     console.log(sources);
     const hasResults =
-      scientificReportTypePagedList.sources &&
-      scientificReportTypePagedList.sources.length > 0;
+      userPagedList.sources && userPagedList.sources.length > 0;
     return (
       <div className="animated fadeIn">
         <ModalConfirm
-          clickOk={this.deleteScientificReportType}
+          clickOk={this.deleteuser}
           isShowModal={isShowDeleteModal}
           toggleModal={this.toggleDeleteModal}
         />
@@ -213,11 +250,11 @@ class ScientificReportTypeListPage extends Component {
                   <Col>
                     <FormGroup>
                       <ValidationInput
-                        name="name"
-                        title="Tên loại bài báo, báo cáo khoa học"
+                        name="username"
+                        title="Tên đăng nhập"
                         type="text"
                         required={true}
-                        value={item.name}
+                        value={item.username}
                         onChange={this.onModelChange}
                       />
                     </FormGroup>
@@ -228,13 +265,85 @@ class ScientificReportTypeListPage extends Component {
                   <Col>
                     <FormGroup>
                       <ValidationInput
-                        name="score"
-                        title="Điểm"
-                        type="number"
+                        name="password"
+                        title="Mật khẩu"
+                        type="text"
                         required={true}
-                        value={item.score}
+                        value={item.password}
                         onChange={this.onModelChange}
                       />
+                    </FormGroup>
+                  </Col>
+                </Row>
+
+                <Row>
+                  <Col>
+                    <FormGroup>
+                      <ValidationInput
+                        name="email"
+                        title="Email"
+                        type="text"
+                        required={true}
+                        value={item.email}
+                        onChange={this.onModelChange}
+                      />
+                    </FormGroup>
+                  </Col>
+                </Row>
+
+                <Row>
+                  <Col>
+                    <FormGroup>
+                      <ValidationInput
+                        name="fullname"
+                        title="Họ và tên"
+                        type="text"
+                        required={true}
+                        value={item.fullname}
+                        onChange={this.onModelChange}
+                      />
+                    </FormGroup>
+                  </Col>
+                </Row>
+                <Row>
+                  <Col>
+                    <FormGroup>
+                      <Label for="examplePassword"> Ngày sinh </Label>
+                      <Datetime
+                        defaultValue={
+                          item.dateOfBirth
+                            ? moment(item.dateOfBirth)
+                                .add(7, "h")
+                                .format("DD-MM-YYYY")
+                            : ""
+                        }
+                        dateFormat="DD-MM-YYYY"
+                        timeFormat=""
+                        onChange={this.onDateOfBirthChange}
+                      />
+                    </FormGroup>
+                  </Col>
+                </Row>
+
+                <Row>
+                  <Col>
+                    <Label>Giới tính</Label>{" "}
+                    <FormGroup>
+                      <div>
+                        <select
+                          className="select-custom"
+                          name="gender"
+                          required={false}
+                          onChange={this.onModelChange}
+                          value={this.state.gender}
+                        >
+                          {gender.GENDER.map(item => {
+                            return (
+                              <option value={item.name}>{item.name}</option>
+                            );
+                          })}
+                        </select>
+                      </div>
                     </FormGroup>
                   </Col>
                 </Row>
@@ -270,8 +379,12 @@ class ScientificReportTypeListPage extends Component {
             <Table className="admin-table" responsive bordered>
               <thead>
                 <tr>
-                  <th>Tên cấp</th>
-                  <th>Điểm</th>
+                  <th>Username</th>
+                  <th>Mật khẩu</th>
+                  <th>Email</th>
+                  <th>Họ và tên</th>
+                  <th>Giới tính</th>
+                  <th>Ngày sinh</th>
                   <th>Thao tác</th>
                 </tr>
               </thead>
@@ -280,8 +393,16 @@ class ScientificReportTypeListPage extends Component {
                   sources.map(item => {
                     return (
                       <tr key={item.id}>
-                        <td>{item.name}</td>
-                        <td>{item.score}</td>
+                        <td>{item.username}</td>
+                        <td>{item.password}</td>
+                        <td>{item.email}</td>
+                        <td>{item.fullname}</td>
+                        <td>{item.gender}</td>
+                        <td>
+                          {moment(item.dateOfBirth)
+                            .add(7, "h")
+                            .format("DD-MM-YYYY")}
+                        </td>
                         <td>
                           <Button
                             className="btn-sm"
@@ -321,10 +442,9 @@ class ScientificReportTypeListPage extends Component {
 
 export default connect(
   state => ({
-    scientificReportTypePagedListReducer:
-      state.scientificReportTypePagedListReducer
+    userPagedListReducer: state.userPagedListReducer
   }),
   {
-    getScientificReportTypeList
+    getUserList
   }
-)(ScientificReportTypeListPage);
+)(UserListPage);

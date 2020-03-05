@@ -114,7 +114,7 @@ class NewsListPage extends Component {
     console.log("state ==================");
     console.log(this.state);
     const { title, summary, content } = this.state.item;
-    const news = { title, summary, title };
+    const news = { title, summary, title, content };
     try {
       await ApiNews.postNews(news);
       this.toggleModalInfo();

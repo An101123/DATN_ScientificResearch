@@ -373,6 +373,45 @@ class ScientificWorkListPage extends Component {
                   </Col>
                 </Row>
 
+                <Row>
+                  <Col>
+                    <FormGroup>
+                      <Label className="label-input">
+                        Người tạo<span className="text-danger"> *</span>
+                      </Label>
+                      <br />
+                      <select
+                        className="select-custom"
+                        defaultValue={item.lecturer ? item.lecturer.id : ""}
+                        id="selectLecturer"
+                        name="lecturerId"
+                        onChange={this.onModelChange}
+                      >
+                        <option style={{ display: "none" }}>-- Chọn --</option>
+                        {lecturers.length > 0
+                          ? lecturers.map((lecturer, i) => (
+                              <option key={i} value={lecturer.id}>
+                                {lecturer.name}
+                              </option>
+                            ))
+                          : ""}
+                      </select>
+                      <Label
+                        id="lecturerWarning"
+                        style={{
+                          marginLeft: 20,
+                          fontWeight: "bold",
+                          opacity: "0"
+                        }}
+                      >
+                        <span className="text-danger">
+                          Vui lòng chọn giảng viên
+                        </span>
+                      </Label>
+                    </FormGroup>
+                  </Col>
+                </Row>
+
                 <div className="text-center">
                   <Button color="danger" type="submit">
                     Xác nhận

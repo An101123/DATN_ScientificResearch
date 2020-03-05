@@ -26,6 +26,10 @@ const ScientificReportTypeListPage = React.lazy(() =>
 const NewsListPage = React.lazy(() =>
   import("./pages/admin/news/news.list.page")
 );
+
+const UserListPage = React.lazy(() =>
+  import("./pages/admin/user/user.list.page")
+);
 const routes = [
   {
     path: "/",
@@ -55,6 +59,11 @@ const routes = [
     path: "/news",
     name: "Tin tức",
     component: NewsListPage
+  },
+  {
+    path: "/users",
+    name: "Tài khoản",
+    component: UserListPage
   }
 ];
 

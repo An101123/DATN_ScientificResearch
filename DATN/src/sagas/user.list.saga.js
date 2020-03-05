@@ -8,7 +8,7 @@ import Api from "../api/api.user";
 
 function* getAllUser(action) {
     try {
-        const payload = yield call(Api.getAllUser, action.payload.params);
+        const payload = yield call(Api.getUserList, action.payload.params);
         yield put(getUserListSuccess(payload));
     } catch(err) {
         yield put(getUserListFailed());

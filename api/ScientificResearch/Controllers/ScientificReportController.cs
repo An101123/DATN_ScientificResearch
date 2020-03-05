@@ -11,7 +11,7 @@ using ScientificResearch.Core.Business.Services;
 
 namespace ScientificResearch.Controllers
 {
-    [Route("api/scientificReport")]
+    [Route("api/scientificReports")]
     [ValidateModel]
     public class ScientificReportController : ControllerBase
     {

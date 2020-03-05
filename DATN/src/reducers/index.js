@@ -9,7 +9,7 @@ import { scientificReportListReducer } from "./scientificReport.list.reducer";
 import { newsListReducer } from "./news.list.reducer";
 
 export default combineReducers({
-  userList: userListReducer,
+  userPagedListReducer: userListReducer,
   profileReducer: profileReducer,
   levelPagedListReducer: levelListReducer,
   scientificReportTypePagedListReducer: scientificReportTypeListReducer,

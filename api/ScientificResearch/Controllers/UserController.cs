@@ -11,7 +11,7 @@ using ScientificResearch.Core.Business.Services;
 
 namespace ScientificResearch.Controllers
 {
-    [Route("api/user")]
+    [Route("api/users")]
     [ValidateModel]
     public class UserController : Controller
     {
@@ -24,6 +24,13 @@ namespace ScientificResearch.Controllers
         }
 
         #region GET
+        [HttpGet("all-users")]
+        public async Task<IActionResult> GetAllUser()
+        {
+            var user = await _userService.GetAllUser();
+            return Ok(user);
+        }
+
 
         [HttpGet]
         public async Task<IActionResult> GetAll([FromQuery] RequestListViewModel userRequestListViewModel)

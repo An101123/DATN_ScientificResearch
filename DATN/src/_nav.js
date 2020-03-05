@@ -38,6 +38,11 @@ export default {
       name: "Tin tức",
       url: "/news",
       icon: "fa fa-atom"
+    },
+    {
+      name: "Tài khoản",
+      url: "/users",
+      icon: "fa fa-atom"
     }
   ]
 };

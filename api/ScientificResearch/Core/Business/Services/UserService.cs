@@ -15,6 +15,7 @@ namespace ScientificResearch.Core.Business.Services
 {
     public interface IUserService
     {
+        Task<List<UserViewModel>> GetAllUser();
         Task<PagedList<UserViewModel>> ListUserAsync(RequestListViewModel requestListViewModel);
         Task<ResponseModel> RegisterAsync(UserManageModel userManageModel);
         Task<ResponseModel> DeleteUserAsync(Guid id);
@@ -51,6 +52,11 @@ namespace ScientificResearch.Core.Business.Services
 
         #region Private Methods
 
+        public async Task<List<UserViewModel>> GetAllUser()
+        {
+            var list = await GetAll().Select(x => new UserViewModel(x)).ToListAsync();
+            return list;
+        }
         private IQueryable<User> GetAll()
         {
             return _userRepository.GetAll();

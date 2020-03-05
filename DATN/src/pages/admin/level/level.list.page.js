@@ -135,7 +135,7 @@ class LevelListPage extends Component {
     try {
       await ApiLevel.updateLevel(level);
       this.toggleModalInfo();
-      this.getPromotionList();
+      this.getLevelList();
       toastSuccess("Đã chỉnh sửa");
     } catch (err) {
       toastError(err);
