@@ -157,6 +157,7 @@ class UserListPage extends Component {
       id,
       username,
       password,
+      passwordComfirm,
       fullName,
       email,
       gender,
@@ -166,6 +167,7 @@ class UserListPage extends Component {
       id,
       username,
       password,
+      passwordComfirm,
       fullName,
       email,
       gender,
@@ -308,7 +310,7 @@ class UserListPage extends Component {
                 <Row>
                   <Col>
                     <FormGroup>
-                      <Label for="examplePassword"> Ngày sinh </Label>
+                      <Label for="example"> Ngày sinh </Label>
                       <Datetime
                         required={true}
                         defaultValue={
@@ -328,7 +330,7 @@ class UserListPage extends Component {
 
                 <Row>
                   <Col>
-                    <Label>Giới tính</Label>{" "}
+                    <Label>Giới tính</Label> {console.log(this.state.item)}
                     <FormGroup>
                       <div>
                         <select
@@ -336,11 +338,14 @@ class UserListPage extends Component {
                           name="gender"
                           required={false}
                           onChange={this.onModelChange}
-                          value={this.state.gender}
                         >
                           {gender.GENDER.map((item, i) => {
                             return (
-                              <option value={item.name} key={i}>
+                              <option
+                                selected={this.state.item.gender === item.name}
+                                value={item.id}
+                                key={i}
+                              >
                                 {item.name}
                               </option>
                             );

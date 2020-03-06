@@ -324,7 +324,7 @@ class ScientificWorkListPage extends Component {
                             ))
                           : ""}
                       </select>
-                      <Label
+                      {/* <Label
                         id="levelWarning"
                         style={{
                           marginLeft: 20,
@@ -333,7 +333,7 @@ class ScientificWorkListPage extends Component {
                         }}
                       >
                         <span className="text-danger">Vui lòng chọn cấp</span>
-                      </Label>
+                      </Label> */}
                     </FormGroup>
                   </Col>
                 </Row>

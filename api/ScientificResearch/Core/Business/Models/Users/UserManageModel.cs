@@ -21,8 +21,6 @@ namespace ScientificResearch.Core.Business.Models.Users
 
         public string Password { get; set; }
 
-        public string PasswordComfirm { get; set; }
-
         public string Email { get; set; }
 
         public DateTime? DateOfBirth { get; set; }
@@ -38,5 +36,6 @@ namespace ScientificResearch.Core.Business.Models.Users
             user.DateOfBirth = DateOfBirth;
             user.Gender = Gender;
         }
+
     }
 }
