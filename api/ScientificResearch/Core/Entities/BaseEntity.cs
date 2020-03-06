@@ -27,13 +27,13 @@ namespace ScientificResearch.Entities
 
         public DateTime? CreateOn { get; set; }
 
-        public Guid? CreateBy { get; set; }
+        //public Guid? CreateBy { get; set; }
 
         public DateTime? UpdatedOn { get; set; }
 
-        public Guid? UpdatedBy { get; set; }
+        //public Guid? UpdatedBy { get; set; }
 
-        public Guid? DeletedBy { get; set; }
+        //public Guid? DeletedBy { get; set; }
 
         public DateTime? DeletedOn { get; set; }
     }

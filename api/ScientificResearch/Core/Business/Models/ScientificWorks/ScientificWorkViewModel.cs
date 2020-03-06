@@ -39,6 +39,6 @@ namespace ScientificResearch.Core.Business.Models.ScientificWorks
 
         public LecturerViewModel Lecturer { get; set; }
 
-        public UserViewModel User { get; set; }
+        //public UserViewModel User { get; set; }
     }
 }

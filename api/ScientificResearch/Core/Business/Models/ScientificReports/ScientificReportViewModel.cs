@@ -25,7 +25,7 @@ namespace ScientificResearch.Core.Business.Models.ScientificReports
                 Content = scientificReport.Content;
                 ScientificReportType = new ScientificReportTypeViewModel(scientificReport.ScientificReportType);
                 Lecturer = new LecturerViewModel(scientificReport.Lecturer);
-                User = new UserViewModel(scientificReport.User);
+                //User = new UserViewModel(scientificReport.User);
             }
         }
         public Guid Id { get; set; }
@@ -38,7 +38,7 @@ namespace ScientificResearch.Core.Business.Models.ScientificReports
 
         public LecturerViewModel Lecturer { get; set; }
 
-        public UserViewModel User { get; set; }
+        //public UserViewModel User { get; set; }
 
     }
 }

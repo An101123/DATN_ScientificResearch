@@ -136,7 +136,7 @@ namespace ScientificResearch
             password.GeneratePassword(out string saltKey, out string hashPass);
 
             user.Password = hashPass;*/
-            user.Gender = UserEnums.UserGender.Male;
+            user.Gender = UserEnums.UserGender.Nam;
 
             var users = new[]
             {

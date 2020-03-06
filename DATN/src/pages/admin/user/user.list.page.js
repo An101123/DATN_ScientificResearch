@@ -61,7 +61,7 @@ class UserListPage extends Component {
     let user = {
       username: "",
       password: "",
-      fullname: "",
+      fullName: "",
       email: "",
       gender: "",
       dateOfBirth: null
@@ -129,7 +129,7 @@ class UserListPage extends Component {
     const {
       username,
       password,
-      fullname,
+      fullName,
       email,
       gender,
       dateOfBirth
@@ -137,7 +137,7 @@ class UserListPage extends Component {
     const user = {
       username,
       password,
-      fullname,
+      fullName,
       email,
       gender,
       dateOfBirth
@@ -157,7 +157,7 @@ class UserListPage extends Component {
       id,
       username,
       password,
-      fullname,
+      fullName,
       email,
       gender,
       DateOfBirth
@@ -166,7 +166,7 @@ class UserListPage extends Component {
       id,
       username,
       password,
-      fullname,
+      fullName,
       email,
       gender,
       DateOfBirth
@@ -228,7 +228,7 @@ class UserListPage extends Component {
     return (
       <div className="animated fadeIn">
         <ModalConfirm
-          clickOk={this.deleteuser}
+          clickOk={this.deleteUser}
           isShowModal={isShowDeleteModal}
           toggleModal={this.toggleDeleteModal}
         />
@@ -267,7 +267,7 @@ class UserListPage extends Component {
                       <ValidationInput
                         name="password"
                         title="Mật khẩu"
-                        type="text"
+                        type="password"
                         required={true}
                         value={item.password}
                         onChange={this.onModelChange}
@@ -295,11 +295,11 @@ class UserListPage extends Component {
                   <Col>
                     <FormGroup>
                       <ValidationInput
-                        name="fullname"
+                        name="fullName"
                         title="Họ và tên"
                         type="text"
                         required={true}
-                        value={item.fullname}
+                        value={item.fullName}
                         onChange={this.onModelChange}
                       />
                     </FormGroup>
@@ -310,6 +310,7 @@ class UserListPage extends Component {
                     <FormGroup>
                       <Label for="examplePassword"> Ngày sinh </Label>
                       <Datetime
+                        required={true}
                         defaultValue={
                           item.dateOfBirth
                             ? moment(item.dateOfBirth)
@@ -337,9 +338,11 @@ class UserListPage extends Component {
                           onChange={this.onModelChange}
                           value={this.state.gender}
                         >
-                          {gender.GENDER.map(item => {
+                          {gender.GENDER.map((item, i) => {
                             return (
-                              <option value={item.name}>{item.name}</option>
+                              <option value={item.name} key={i}>
+                                {item.name}
+                              </option>
                             );
                           })}
                         </select>
@@ -380,7 +383,6 @@ class UserListPage extends Component {
               <thead>
                 <tr>
                   <th>Username</th>
-                  <th>Mật khẩu</th>
                   <th>Email</th>
                   <th>Họ và tên</th>
                   <th>Giới tính</th>
@@ -394,9 +396,8 @@ class UserListPage extends Component {
                     return (
                       <tr key={item.id}>
                         <td>{item.username}</td>
-                        <td>{item.password}</td>
                         <td>{item.email}</td>
-                        <td>{item.fullname}</td>
+                        <td>{item.fullName}</td>
                         <td>{item.gender}</td>
                         <td>
                           {moment(item.dateOfBirth)

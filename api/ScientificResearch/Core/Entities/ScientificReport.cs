@@ -23,8 +23,8 @@ namespace ScientificResearch.Entities
         public Guid LecturerId { get; set; }
         public virtual Lecturer Lecturer { get; set; }
 
-        public Guid UserId { get; set; }
-        public virtual User User { get; set; }
+        //public Guid UserId { get; set; }
+        //public virtual User User { get; set; }
 
 
 

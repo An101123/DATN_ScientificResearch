@@ -1,4 +1,5 @@
-﻿using ScientificResearch.Entities;
+﻿using ScientificResearch.Core.Common.Utilities;
+using ScientificResearch.Entities;
 using ScientificResearch.Entities.Enums;
 using System;
 using System.Collections.Generic;
@@ -20,9 +21,10 @@ namespace ScientificResearch.Core.Business.Models.Users
             {
                 Id = user.Id;
                 Username = user.Username;
+                Password = user.Password;
                 FullName = user.FullName;
                 Email = user.Email;
-                Gender = user.Gender;
+                Gender = user.Gender.GetEnumName();
                 DateOfBirth = user.DateOfBirth;
             }
         }
@@ -31,11 +33,13 @@ namespace ScientificResearch.Core.Business.Models.Users
 
         public string Username { get; set; }
 
+        public string Password { get; set; }
+
         public string FullName { get; set; }
 
         public string Email { get; set; }
 
-        public UserEnums.UserGender? Gender { get; set; }
+        public string Gender { get; set; }
 
         public DateTime? DateOfBirth { get; set; }
 

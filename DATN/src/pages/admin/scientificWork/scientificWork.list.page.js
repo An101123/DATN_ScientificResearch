@@ -82,6 +82,7 @@ class ScientificWorkListPage extends Component {
     let item = Object.assign({}, this.state.item);
     item[inputName] = inputValue;
     this.setState({ item });
+    console.log(item);
   };
 
   onTimeChange = el => {
@@ -158,8 +159,11 @@ class ScientificWorkListPage extends Component {
   };
 
   updateScientificWork = async () => {
-    const { id, name, time, content, levelId, lecturerId } = this.state.item;
+    const { id, name, time, content } = this.state.item;
+    const levelId = this.state.item.level.id;
+    const lecturerId = this.state.item.lecturer.id;
     const scientificWork = { id, name, time, content, levelId, lecturerId };
+    console.log(scientificWork);
     if (!levelId || levelId === "--Select Level--") {
       document.getElementById("levelWarning").style.opacity = "1";
     } else {
@@ -167,7 +171,7 @@ class ScientificWorkListPage extends Component {
       try {
         await ApiScientificWork.updateScientificWork(scientificWork);
         this.toggleModalInfo();
-        this.getPromotionList();
+        this.getScientificWorkList();
         toastSuccess("Đã chỉnh sửa");
       } catch (err) {
         toastError(err);

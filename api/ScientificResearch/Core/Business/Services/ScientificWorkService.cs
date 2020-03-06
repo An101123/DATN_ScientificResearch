@@ -40,8 +40,7 @@ namespace ScientificResearch.Core.Business.Services
         private IQueryable<ScientificWork> GetAll()
         {
             return _scientificWorkResponstory.GetAll().Include(x => x.Level)
-                .Include(x => x.Lecturer)
-                .Include(x => x.User);
+                .Include(x => x.Lecturer);
         }
 
         private List<string> GetAllPropertyNameOfScientificWorkViewModel()

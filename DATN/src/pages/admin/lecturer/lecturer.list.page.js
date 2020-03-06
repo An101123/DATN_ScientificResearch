@@ -136,8 +136,8 @@ class LecturerListPage extends Component {
   };
 
   updateLecturer = async () => {
-    const { id, name, faculty, DateOfBirth } = this.state.item;
-    const lecturer = { id, name, faculty, DateOfBirth };
+    const { id, name, faculty, dateOfBirth } = this.state.item;
+    const lecturer = { id, name, faculty, dateOfBirth };
     try {
       await ApiLecturer.updateLecturer(lecturer);
       this.toggleModalInfo();

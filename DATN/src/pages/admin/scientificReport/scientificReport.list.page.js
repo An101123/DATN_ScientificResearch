@@ -170,14 +170,9 @@ class ScientificReportListPage extends Component {
   };
 
   updateScientificReport = async () => {
-    const {
-      id,
-      name,
-      time,
-      content,
-      scientificReportTypeId,
-      lecturerId
-    } = this.state.item;
+    const { id, name, time, content } = this.state.item;
+    const scientificReportTypeId = this.state.item.scientificReportType.id;
+    const lecturerId = this.state.item.lecturer.id;
     const scientificReport = {
       id,
       name,
@@ -198,7 +193,7 @@ class ScientificReportListPage extends Component {
       try {
         await ApiScientificReport.updateScientificReport(scientificReport);
         this.toggleModalInfo();
-        this.getPromotionList();
+        this.getScientificReportList();
         toastSuccess("Đã chỉnh sửa");
       } catch (err) {
         toastError(err);

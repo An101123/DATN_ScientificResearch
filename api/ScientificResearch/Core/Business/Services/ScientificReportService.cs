@@ -43,8 +43,7 @@ namespace ScientificResearch.Core.Business.Services
         private IQueryable<ScientificReport> GetAll()
         {
             return _scientificReportResponstory.GetAll().Include(x => x.ScientificReportType)
-                .Include(x => x.Lecturer)
-                .Include(x => x.User);
+                .Include(x => x.Lecturer);
         }
 
         private List<string> GetAllPropertyNameOfScientificReportViewModel()
@@ -104,7 +103,7 @@ namespace ScientificResearch.Core.Business.Services
 
         public async Task<ResponseModel> CreateScientificReportAsync(ScientificReportManageModel scientificReportManageModel)
         {
-            var scientificReport = await _scientificReportResponstory.FetchFirstAsync(x => x.Name == scientificReportManageModel.Name && x.ScientificReportTypeId == scientificReportManageModel.ScientificReportTypeId && x.UserId == scientificReportManageModel.UserId);
+            var scientificReport = await _scientificReportResponstory.FetchFirstAsync(x => x.Name == scientificReportManageModel.Name && x.ScientificReportTypeId == scientificReportManageModel.ScientificReportTypeId);
             if (scientificReport != null)
             {
                 return new ResponseModel()

@@ -2,10 +2,9 @@ import RequestHelper from "../helpers/request.helper";
 import { appConfig } from "../config/app.config";
 
 export default class Api {
-
   // sso
   static login(data) {
-    return RequestHelper.post(appConfig.apiUrl + "user/login", data);
+    return RequestHelper.post(appConfig.apiUrl + "users/login", data);
   }
 
   // static getPermissons() {

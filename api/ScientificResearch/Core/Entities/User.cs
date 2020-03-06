@@ -40,8 +40,8 @@ namespace ScientificResearch.Entities
 
         public DateTime? ResetPasswordExpiryDate { get; set; }
 
-        public virtual ICollection<ScientificWork> ScientificWorks { get; set; }
+        //public virtual ICollection<ScientificWork> ScientificWorks { get; set; }
 
-        public virtual ICollection<ScientificReport> ScientificReports { get; set; }
+        //public virtual ICollection<ScientificReport> ScientificReports { get; set; }
     }
 }

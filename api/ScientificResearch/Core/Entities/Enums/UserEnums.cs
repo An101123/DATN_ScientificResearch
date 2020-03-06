@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -9,9 +10,9 @@ namespace ScientificResearch.Entities.Enums
     {
         public enum UserGender
         {
-            Male,
-            Female,
-            Other
+            Nam,
+            Nữ,
+            Khác
         }
     }
 }
