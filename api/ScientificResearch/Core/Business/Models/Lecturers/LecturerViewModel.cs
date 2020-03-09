@@ -20,6 +20,7 @@ namespace ScientificResearch.Core.Business.Models.Lecturers
                 Name = lecturer.Name;
                 Faculty = lecturer.Faculty;
                 DateOfBirth = lecturer.DateOfBirth;
+                Total = lecturer.Total;
             }
         }
 
@@ -30,5 +31,7 @@ namespace ScientificResearch.Core.Business.Models.Lecturers
         public string Faculty { get; set; }
 
         public DateTime DateOfBirth { get; set; }
+
+        public int Total { get; set; }
     }
 }

@@ -1,0 +1,26 @@
+[
+  {
+    "id" : "1",
+    "Name" : "phuong",
+    "Birthday" : "09/07/1996",
+    "LevelEmp" : "7",
+    "Gender" : "1",
+    "Email" : "phuong@123"
+  },
+  {
+    "id" : "2",
+    "Name" : "phuong12",
+    "Birthday" : "09/07/1994",
+    "LevelEmp" : "5",
+    "Gender" : "1",
+    "Email" : "phuong@123"
+  },
+  {
+    "id" : "3",
+    "Name" : "phuong34",
+    "Birthday" : "09/07/1994",
+    "LevelEmp" : "5",
+    "Gender" : "1",
+    "Email" : "phuong@123"
+  }
+]

@@ -1,7 +1,11 @@
 import React, { Component } from "react";
 import { Route, Switch } from "react-router-dom";
-import './App.css';
+
 import Loadable from "react-loadable";
+import "./App.scss";
+import "font-awesome/css/font-awesome.min.css";
+import AuthenticationRoute from "./components/common/authentication-route";
+
 const loading = () => (
   <div className="animated fadeIn pt-3 text-center">Đang tải...</div>
 );
@@ -51,4 +55,5 @@ class App extends Component {
     );
   }
 }
+
 export default App;

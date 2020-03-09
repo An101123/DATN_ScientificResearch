@@ -27,22 +27,24 @@ namespace ScientificResearch.Core.Business.Services
     }
     public class ScientificReportService : IScientificReportService
     {
-        private readonly IRepository<ScientificReport> _scientificReportResponstory;
-        private readonly IRepository<ScientificReportType> _scientificReportTypeResponstory;
+        private readonly IRepository<ScientificReport> _scientificReportRepository;
+        private readonly IRepository<ScientificReportType> _scientificReportTypeRepository;
+        private readonly IRepository<Lecturer> _lecturerRepository;
 
         private readonly IMapper _mapper;
 
-        public ScientificReportService(IRepository<ScientificReport> scientificReportResponstory, IRepository<ScientificReportType> scientificReportTypeResponstory, IMapper mapper)
+        public ScientificReportService(IRepository<ScientificReport> scientificReportRepository, IRepository<ScientificReportType> scientificReportTypeRepository, IRepository<Lecturer> lecturerRepository, IMapper mapper)
         {
-            _scientificReportResponstory = scientificReportResponstory;
+            _scientificReportRepository = scientificReportRepository;
             _mapper = mapper;
-            _scientificReportTypeResponstory = scientificReportTypeResponstory;
+            _scientificReportTypeRepository = scientificReportTypeRepository;
+            _lecturerRepository = lecturerRepository;
         }
 
         #region private method
         private IQueryable<ScientificReport> GetAll()
         {
-            return _scientificReportResponstory.GetAll().Include(x => x.ScientificReportType)
+            return _scientificReportRepository.GetAll().Include(x => x.ScientificReportType)
                 .Include(x => x.Lecturer);
         }
 
@@ -54,6 +56,7 @@ namespace ScientificResearch.Core.Business.Services
 
             return ReflectionUtilities.GetAllPropertyNamesOfType(type);
         }
+
         #endregion
         public async Task<PagedList<ScientificReportViewModel>> ListScientificReportAsync(RequestListViewModel requestListViewModel)
         {
@@ -103,7 +106,7 @@ namespace ScientificResearch.Core.Business.Services
 
         public async Task<ResponseModel> CreateScientificReportAsync(ScientificReportManageModel scientificReportManageModel)
         {
-            var scientificReport = await _scientificReportResponstory.FetchFirstAsync(x => x.Name == scientificReportManageModel.Name && x.ScientificReportTypeId == scientificReportManageModel.ScientificReportTypeId);
+            var scientificReport = await _scientificReportRepository.FetchFirstAsync(x => x.Name == scientificReportManageModel.Name && x.ScientificReportTypeId == scientificReportManageModel.ScientificReportTypeId);
             if (scientificReport != null)
             {
                 return new ResponseModel()
@@ -114,11 +117,13 @@ namespace ScientificResearch.Core.Business.Services
             }
             else
             {
-                var scientificReportType = await _scientificReportTypeResponstory.GetByIdAsync(scientificReportManageModel.ScientificReportTypeId);
+                var scientificReportType = await _scientificReportTypeRepository.GetByIdAsync(scientificReportManageModel.ScientificReportTypeId);
+                var lecturer = await _lecturerRepository.GetByIdAsync(scientificReportManageModel.LecturerId);
                 scientificReport = _mapper.Map<ScientificReport>(scientificReportManageModel);
                 scientificReport.ScientificReportType = scientificReportType;
+                scientificReport.Lecturer = lecturer;
 
-                await _scientificReportResponstory.InsertAsync(scientificReport);
+                await _scientificReportRepository.InsertAsync(scientificReport);
                 scientificReport = await GetAll().FirstOrDefaultAsync(x => x.Id == scientificReport.Id);
                 return new ResponseModel()
                 {
@@ -129,7 +134,7 @@ namespace ScientificResearch.Core.Business.Services
         }
         public async Task<ResponseModel> UpdateScientificReportAsync(Guid id, ScientificReportManageModel scientificReportManageModel)
         {
-            var scientificReport = await _scientificReportResponstory.GetByIdAsync(id);
+            var scientificReport = await _scientificReportRepository.GetByIdAsync(id);
             if (scientificReport == null)
             {
                 return new ResponseModel()
@@ -140,10 +145,10 @@ namespace ScientificResearch.Core.Business.Services
             }
             else
             {
-                var existedScientificReport = await _scientificReportResponstory.FetchFirstAsync(x => x.Name == scientificReportManageModel.Name && x.ScientificReportTypeId == scientificReportManageModel.ScientificReportTypeId && x.Id != id);
+                var existedScientificReport = await _scientificReportRepository.FetchFirstAsync(x => x.Name == scientificReportManageModel.Name && x.ScientificReportTypeId == scientificReportManageModel.ScientificReportTypeId && x.Id != id);
                 if (existedScientificReport != null)
                 {
-                    var scientificReportType = await _scientificReportResponstory.GetByIdAsync(scientificReportManageModel.ScientificReportTypeId);
+                    var scientificReportType = await _scientificReportRepository.GetByIdAsync(scientificReportManageModel.ScientificReportTypeId);
                     return new ResponseModel()
                     {
                         StatusCode = System.Net.HttpStatusCode.BadRequest,
@@ -153,14 +158,14 @@ namespace ScientificResearch.Core.Business.Services
                 else
                 {
                     scientificReportManageModel.GetScientificReportFromModel(scientificReport);
-                    return await _scientificReportResponstory.UpdateAsync(scientificReport);
+                    return await _scientificReportRepository.UpdateAsync(scientificReport);
                 }
             }
 
         }
         public async Task<ResponseModel> DeleteScientificReportAsync(Guid id)
         {
-            return await _scientificReportResponstory.DeleteAsync(id);
+            return await _scientificReportRepository.DeleteAsync(id);
         }
 
     }

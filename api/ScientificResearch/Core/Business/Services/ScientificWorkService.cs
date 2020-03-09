@@ -28,11 +28,15 @@ namespace ScientificResearch.Core.Business.Services
     public class ScientificWorkService : IScientificWorkService
     {
         private readonly IRepository<ScientificWork> _scientificWorkResponstory;
+        private readonly IRepository<Level> _levelRepository;
+        private readonly IRepository<Lecturer> _lecturerRepository;
         private readonly IMapper _mapper;
 
-        public ScientificWorkService(IRepository<ScientificWork> scientificWorkResponstory, IMapper mapper)
+        public ScientificWorkService(IRepository<ScientificWork> scientificWorkResponstory, IRepository<Level> levelRepository, IRepository<Lecturer> lecturerRepository, IMapper mapper)
         {
             _scientificWorkResponstory = scientificWorkResponstory;
+            _levelRepository = levelRepository;
+            _lecturerRepository = lecturerRepository;
             _mapper = mapper;
         }
 
@@ -115,7 +119,11 @@ namespace ScientificResearch.Core.Business.Services
             }
             else
             {
+                var level = await _levelRepository.GetByIdAsync(scientificWorkManageModel.LevelId);
+                var lecturer = await _lecturerRepository.GetByIdAsync(scientificWorkManageModel.LecturerId);
                 scientificWork = _mapper.Map<ScientificWork>(scientificWorkManageModel);
+                scientificWork.Level = level;
+                scientificWork.Lecturer = lecturer;
 
                 await _scientificWorkResponstory.InsertAsync(scientificWork);
                 return new ResponseModel()
