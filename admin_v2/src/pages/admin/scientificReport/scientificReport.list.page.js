@@ -440,9 +440,9 @@ class ScientificReportListPage extends Component {
                 <tr>
                   <th>Bài báo - Báo cáo khoa học</th>
                   <th>Thời gian</th>
-                  <td>Nội dung</td>
-                  <td>Loại</td>
-                  <td>Giảng viên</td>
+                  <th>Nội dung</th>
+                  <th>Loại</th>
+                  <th>Giảng viên</th>
                   <th>Thao tác</th>
                 </tr>
               </thead>

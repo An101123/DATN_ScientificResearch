@@ -1,5 +1,4 @@
 import React from "react";
-import DefaultLayout from "./pages/admin/Admin";
 
 const Dashboard = React.lazy(() => import("./pages/admin/Dashboard/Dashboard"));
 
@@ -27,16 +26,36 @@ const NewsListPage = React.lazy(() =>
   import("./pages/admin/news/news.list.page")
 );
 
-const UserListPage = React.lazy(() =>
-  import("./pages/admin/user/user.list.page")
+const LevelNhaNuocListPage = React.lazy(() =>
+  import("./pages/admin/scientificWork/levelNhaNuoc.list.page")
+);
+
+const LevelBoListPage = React.lazy(() =>
+  import("./pages/admin/scientificWork/levelBo.list.page")
+);
+
+const LevelDHDNListPage = React.lazy(() =>
+  import("./pages/admin/scientificWork/levelDHDN.list.page")
+);
+
+const LevelTruongListPage = React.lazy(() =>
+  import("./pages/admin/scientificWork/levelTruong.list.page")
+);
+
+const TrongNuocListPage = React.lazy(() =>
+  import("./pages/admin/scientificReport/trongNuoc.list.page")
+);
+
+const QuocTeListPage = React.lazy(() =>
+  import("./pages/admin/scientificReport/quocTe.list.page")
 );
 const routes = [
-  {
-    path: "/",
-    exact: true,
-    name: "Admin",
-    component: DefaultLayout
-  },
+  // {
+  //   path: "/",
+  //   exact: true,
+  //   name: "Admin",
+  //   component: DefaultLayout
+  // },
   { path: "/dashboard", name: "Dashboard", component: Dashboard },
   { path: "/levels", name: "Cấp", component: LevelListPage },
   { path: "/lecturers", name: "Giảng viên", component: LecturerListPage },
@@ -44,6 +63,26 @@ const routes = [
     path: "/scientificWorks",
     name: "Công trình khoa học",
     component: ScientificWorkListPage
+  },
+  {
+    path: "/scientificWorksNhaNuoc",
+    name: "NCKH cấp Nhà Nước",
+    component: LevelNhaNuocListPage
+  },
+  {
+    path: "/scientificWorksBo",
+    name: "NCKH cấp Bộ",
+    component: LevelBoListPage
+  },
+  {
+    path: "/scientificWorksDHDN",
+    name: "NCKH cấp ĐHĐN",
+    component: LevelDHDNListPage
+  },
+  {
+    path: "/scientificWorksTruong",
+    name: "NCKH cấp Trường",
+    component: LevelTruongListPage
   },
   {
     path: "/scientificReportTypes",
@@ -56,14 +95,20 @@ const routes = [
     component: ScientificReportListPage
   },
   {
+    path: "/scientificReportsTrongNuoc",
+    name: "Trong nước",
+    component: TrongNuocListPage
+  },
+  {
+    path: "/scientificReportsQuocTe",
+    name: "Quốc tế",
+    component: QuocTeListPage
+  },
+
+  {
     path: "/news",
     name: "Tin tức",
     component: NewsListPage
-  },
-  {
-    path: "/users",
-    name: "Tài khoản",
-    component: UserListPage
   }
 ];
 

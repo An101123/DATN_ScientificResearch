@@ -1,9 +1,9 @@
 export default {
   items: [
     {
-      name: "Dashboard",
+      name: "Trang chủ",
       url: "/dashboard",
-      icon: "icon-speedometer",
+      icon: "fa fa-fw fa-home",
       badge: {
         variant: "info",
         text: "NEW"
@@ -12,38 +12,38 @@ export default {
     {
       name: "Cấp",
       url: "/levels",
-      icon: "fa fa-atom"
+      icon: "fa fa-list"
     },
 
     {
       name: "Công trình khoa học",
       url: "/scientificWorks",
-      icon: "fa fa-atom"
+      icon: "fa fa-balance-scale"
     },
     {
       name: "Bài báo - Báo cáo",
       url: "/scientificReports",
-      icon: "fa fa-atom"
+      icon: "fa fa-file-text"
     },
     {
       name: "Loại Bài báo - Báo cáo",
       url: "/scientificReportTypes",
-      icon: "fa fa-atom"
+      icon: "fa fa-pie-chart"
     },
     {
       name: "Giảng viên",
       url: "/lecturers",
-      icon: "fa fa-atom"
+      icon: "fa fa-address-book"
     },
     {
       name: "Tin tức",
       url: "/news",
-      icon: "fa fa-atom"
+      icon: "fa fa-globe"
     },
     {
       name: "Tài khoản",
       url: "/users",
-      icon: "fa fa-atom"
+      icon: "fa fa-users"
     }
   ]
 };

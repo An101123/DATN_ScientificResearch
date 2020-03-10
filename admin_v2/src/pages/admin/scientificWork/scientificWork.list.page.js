@@ -410,9 +410,9 @@ class ScientificWorkListPage extends Component {
                 <tr>
                   <th>Công trình khoa học</th>
                   <th>Thời gian</th>
-                  <td>Nội dung</td>
-                  <td>Cấp</td>
-                  <td>Giảng viên</td>
+                  <th>Nội dung</th>
+                  <th>Cấp</th>
+                  <th>Giảng viên</th>
                   <th>Thao tác</th>
                 </tr>
               </thead>

@@ -62,7 +62,9 @@ namespace ScientificResearch.Core.Business.Services
             .Where(x => (!requestListViewModel.IsActive.HasValue || x.RecordActive == requestListViewModel.IsActive)
             && (string.IsNullOrEmpty(requestListViewModel.Query)
                 || (x.Name.Contains(requestListViewModel.Query)
-                || (x.Content.Equals(requestListViewModel.Query))
+                || (x.Content.Contains(requestListViewModel.Query))
+                || (x.Level.Name.Contains(requestListViewModel.Query))
+                || (x.Lecturer.Name.Contains(requestListViewModel.Query))
                 )))
             .Select(x => new ScientificWorkViewModel(x)).ToListAsync();
 
@@ -95,6 +97,7 @@ namespace ScientificResearch.Core.Business.Services
 
             return new PagedList<ScientificWorkViewModel>(list, requestListViewModel.Offset ?? CommonConstants.Config.DEFAULT_SKIP, requestListViewModel.Limit ?? CommonConstants.Config.DEFAULT_TAKE);
         }
+
         public async Task<ScientificWorkViewModel> GetScientificWorkByIdAsync(Guid? id)
         {
             var scientificWork = await GetAll().FirstOrDefaultAsync(x => x.Id == id);
