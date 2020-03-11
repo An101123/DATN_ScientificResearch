@@ -19,7 +19,6 @@ import {
 } from "@coreui/react";
 import logo from "../../../assets/img/brand/logo.svg";
 import sygnet from "../../../assets/img/brand/sygnet.svg";
-
 const propTypes = {
   children: PropTypes.node
 };
@@ -33,25 +32,31 @@ class DefaultHeader extends Component {
 
     return (
       <React.Fragment>
-        <AppSidebarToggler className="d-lg-none" display="md" mobile />
+        {/* <AppSidebarToggler className="d-lg-none" display="md" mobile /> */}
+        {/* <AppSidebarToggler className="d-md-down-none" display="lg" /> */}
         <AppNavbarBrand
           full={{
             src:
-              "https://upload.wikimedia.org/wikipedia/commons/2/25/Logo_Kinh_t%E1%BA%BF_%C4%90%C3%A0_N%E1%BA%B5ng.jpg",
-            width: 50,
+              "https://due.udn.vn/portals/_default/skins/dhkt/img/front/logo.png",
+            width: 153,
             height: 50,
+
             alt: "CoreUI Logo"
           }}
-          minimized={{ src: sygnet, width: 30, height: 30, alt: "CoreUI Logo" }}
+          minimized={{
+            src: sygnet,
+            width: 30,
+            height: 30,
+            alt: "CoreUI Logo"
+          }}
         />
-        <AppSidebarToggler className="d-md-down-none" display="lg" />
 
         {/* <Nav className="d-md-down-none" navbar>
           <NavItem className="px-3">
             <NavLink href="/">Dashboard</NavLink>
           </NavItem>
         </Nav> */}
-        <Nav className="ml-auto" navbar>
+        {/* <Nav className="ml-auto" navbar>
           <NavItem className="d-md-down-none">
             <NavLink href="#">
               <i className="icon-bell" />
@@ -87,9 +92,9 @@ class DefaultHeader extends Component {
               </DropdownItem>
             </DropdownMenu>
           </UncontrolledDropdown>
-        </Nav>
-        <AppAsideToggler className="d-md-down-none" />
-        <AppAsideToggler className="d-lg-none" mobile />
+        </Nav> */}
+        {/* <AppAsideToggler className="d-md-down-none" /> */}
+        {/* <AppAsideToggler className="d-lg-none" mobile /> */}
       </React.Fragment>
     );
   }

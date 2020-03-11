@@ -38,6 +38,7 @@ class DefaultHeader extends Component {
           full={{
             src:
               "https://upload.wikimedia.org/wikipedia/commons/2/25/Logo_Kinh_t%E1%BA%BF_%C4%90%C3%A0_N%E1%BA%B5ng.jpg",
+
             width: 50,
             height: 50,
             alt: "CoreUI Logo"

@@ -65,6 +65,11 @@ export default {
       name: "Tin tức",
       url: "/news",
       icon: "fa fa-globe"
+    },
+    {
+      name: "Đăng nhập",
+      url: "/login",
+      icon: "icon-star"
     }
   ]
 };

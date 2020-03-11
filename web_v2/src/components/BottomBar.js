@@ -1,6 +1,5 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { Button } from 'reactstrap'
 
 const BottomBar = ({
   disabled,
@@ -29,7 +28,6 @@ const BottomBar = ({
             </Link>
           </div>
         )}
-
         <div
           className={`bottom-button-container ${disabled && 'btn-disable'}`}
           onClick={handleRightClick}
