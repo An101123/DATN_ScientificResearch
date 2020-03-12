@@ -10,7 +10,7 @@ namespace ScientificResearch.Entities
     {
         public Lecturer() : base()
         {
-
+            Total = 0;
         }
 
         [Required]

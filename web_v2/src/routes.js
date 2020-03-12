@@ -56,7 +56,7 @@ const routes = [
   //   name: "Admin",
   //   component: DefaultLayout
   // },
-  { path: "/dashboard", name: "Dashboard", component: Dashboard },
+  { path: "/dashboard", name: "", component: Dashboard },
   { path: "/levels", name: "Cấp", component: LevelListPage },
   { path: "/lecturers", name: "Giảng viên", component: LecturerListPage },
   {
@@ -65,23 +65,23 @@ const routes = [
     component: ScientificWorkListPage
   },
   {
-    path: "/scientificWorksNhaNuoc",
-    name: "NCKH cấp Nhà Nước",
+    path: "/NCKHCapNhaNuoc",
+    name: "Nghiên cứu khoa học cấp Nhà Nước",
     component: LevelNhaNuocListPage
   },
   {
-    path: "/scientificWorksBo",
-    name: "NCKH cấp Bộ",
+    path: "/NCKHCapBo",
+    name: "Nghiên cứu khoa học cấp Bộ",
     component: LevelBoListPage
   },
   {
-    path: "/scientificWorksDHDN",
-    name: "NCKH cấp ĐHĐN",
+    path: "/NCKHCapDHDN",
+    name: "Nghiên cứu khoa học cấp ĐHĐN",
     component: LevelDHDNListPage
   },
   {
-    path: "/scientificWorksTruong",
-    name: "NCKH cấp Trường",
+    path: "/NCKHCapTruong",
+    name: "Nghiên cứu khoa học cấp Trường",
     component: LevelTruongListPage
   },
   {
@@ -95,13 +95,13 @@ const routes = [
     component: ScientificReportListPage
   },
   {
-    path: "/scientificReportsTrongNuoc",
-    name: "Trong nước",
+    path: "/BaoCaoKHTrongNuoc",
+    name: "Bài báo, báo cáo khoa học trong nước",
     component: TrongNuocListPage
   },
   {
-    path: "/scientificReportsQuocTe",
-    name: "Quốc tế",
+    path: "/BaoCaoKHQuocTe",
+    name: "Bài báo, báo cáo khoa học quốc tế",
     component: QuocTeListPage
   },
 

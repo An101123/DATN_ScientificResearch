@@ -1,7 +1,7 @@
 export default {
   items: [
     {
-      name: "Trang chủ",
+      name: "Dashboard",
       url: "/dashboard",
       icon: "fa fa-fw fa-home",
       badge: {

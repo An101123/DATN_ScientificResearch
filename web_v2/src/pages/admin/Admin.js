@@ -26,7 +26,7 @@ import { connect } from "react-redux";
 
 const DefaultAside = React.lazy(() => import("./DefaultLayout/DefaultAside"));
 const DefaultFooter = React.lazy(() => import("./DefaultLayout/DefaultFooter"));
-const DefaultHeader = React.lazy(() => import("./DefaultLayout/DefaultHeader"));
+// const DefaultHeader = React.lazy(() => import("./DefaultLayout/DefaultHeader"));
 
 class DefaultLayout extends Component {
   loading = () => (
@@ -50,11 +50,11 @@ class DefaultLayout extends Component {
       <>
         <div className="app">
           <ToastContainer />
-          <AppHeader fixed>
+          {/* <AppHeader fixed>
             <Suspense fallback={this.loading()}>
               <DefaultHeader onLogout={e => this.signOut(e)} />
             </Suspense>
-          </AppHeader>
+          </AppHeader> */}
 
           <div className="app-body">
             <AppSidebar fixed display="lg">
@@ -68,7 +68,7 @@ class DefaultLayout extends Component {
             </AppSidebar>
 
             <main className="main">
-              <AppBreadcrumb appRoutes={routes} />
+              {/* <AppBreadcrumb appRoutes={routes} /> */}
               <Container fluid>
                 <Suspense fallback={this.loading()}>
                   <Switch>

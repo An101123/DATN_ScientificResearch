@@ -47,7 +47,11 @@ namespace ScientificResearch.Core.Business.Services
 
         private IQueryable<Lecturer> GetAll()
         {
-            return _lecturerRepository.GetAll().Include(x => x.ScientificReports).Include(x => x.ScientificWorks);
+            return _lecturerRepository.GetAll()
+                .Include(x => x.ScientificReports)
+                    .ThenInclude(x => x.ScientificReportType)
+                .Include(x => x.ScientificWorks)
+                    .ThenInclude(x => x.Level);
         }
 
         private List<string> GetAllPropertyNameOfLecturerViewModel()
@@ -57,6 +61,33 @@ namespace ScientificResearch.Core.Business.Services
             var type = lecturerViewModel.GetType();
 
             return ReflectionUtilities.GetAllPropertyNamesOfType(type);
+        }
+
+        private async Task ScoreCount()
+        {
+            var list = await GetAll().ToListAsync();
+            foreach (var lecturer in list)
+            {
+                var sum = 0;
+                if (lecturer.ScientificReports.Count > 0)
+                {
+                    foreach (var scientificReport in lecturer.ScientificReports)
+                    {
+                        sum += scientificReport.ScientificReportType.Score;
+                    }
+                }
+
+                if (lecturer.ScientificWorks.Count > 0)
+                {
+                    foreach (var scientificWork in lecturer.ScientificWorks)
+                    {
+                        sum += scientificWork.Level.Score;
+                    }
+                }
+
+                lecturer.Total = sum;
+                await _lecturerRepository.UpdateAsync(lecturer);
+            }
         }
 
         #endregion
@@ -69,6 +100,7 @@ namespace ScientificResearch.Core.Business.Services
 
         public async Task<PagedList<LecturerViewModel>> ListLecturerAsync(RequestListViewModel requestListViewModel)
         {
+            await ScoreCount();
             var list = await GetAll()
                 .Where(x => (!requestListViewModel.IsActive.HasValue || x.RecordActive == requestListViewModel.IsActive)
                 && (string.IsNullOrEmpty(requestListViewModel.Query)

@@ -163,19 +163,14 @@ class ScientificWorkListPage extends Component {
     const levelId = this.state.item.level.id;
     const lecturerId = this.state.item.lecturer.id;
     const scientificWork = { id, name, time, content, levelId, lecturerId };
-    console.log(scientificWork);
-    if (!levelId || levelId === "--Select Level--") {
-      document.getElementById("levelWarning").style.opacity = "1";
-    } else {
-      document.getElementById("levelWarning").style.opacity = "0";
-      try {
-        await ApiScientificWork.updateScientificWork(scientificWork);
-        this.toggleModalInfo();
-        this.getScientificWorkList();
-        toastSuccess("Đã chỉnh sửa");
-      } catch (err) {
-        toastError(err);
-      }
+
+    try {
+      await ApiScientificWork.updateScientificWork(scientificWork);
+      this.toggleModalInfo();
+      this.getScientificWorkList();
+      toastSuccess("Đã chỉnh sửa");
+    } catch (err) {
+      toastError(err);
     }
   };
 

@@ -12,7 +12,6 @@ export default {
 
     {
       name: "Công trình khoa học",
-      url: "/scientificWorks",
       icon: "fa fa-balance-scale",
       children: [
         {
@@ -21,25 +20,24 @@ export default {
         },
         {
           name: "NCKH cấp Nhà Nước",
-          url: "/scientificWorksNhaNuoc"
+          url: "/NCKHCapNhaNuoc"
         },
         {
           name: "NCKH cấp Bộ",
-          url: "/scientificWorksBo"
+          url: "/NCKHCapBo"
         },
         {
           name: "NCKH cấp ĐHĐN",
-          url: "/scientificWorksDHDN"
+          url: "/NCKHCapDHDN"
         },
         {
           name: "NCKH cấp Trường",
-          url: "/scientificWorksTruong"
+          url: "/NCKHCapTruong"
         }
       ]
     },
     {
       name: "Bài báo - Báo cáo",
-      url: "/scientificReports",
       icon: "fa fa-file-text",
       children: [
         {
@@ -48,11 +46,11 @@ export default {
         },
         {
           name: "Trong nước",
-          url: "/scientificReportsTrongNuoc"
+          url: "/BaoCaoKHTrongNuoc"
         },
         {
           name: "Quốc tế",
-          url: "/scientificReportsQuocTe"
+          url: "/BaoCaoKHQuocTe"
         }
       ]
     },
@@ -67,8 +65,8 @@ export default {
       icon: "fa fa-globe"
     },
     {
-      name: "Đăng nhập",
-      url: "/login",
+      name: "Admin",
+      url: "http://localhost:4000/login",
       icon: "icon-star"
     }
   ]

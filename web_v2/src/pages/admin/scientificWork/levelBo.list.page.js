@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Row, Col, Table } from "reactstrap";
 import moment from "moment";
-import ModalConfirm from "../../../components/modal/modal-confirm";
 import Pagination from "../../../components/pagination/Pagination";
 import lodash from "lodash";
 import { getScientificWorkList } from "../../../actions/scientificWork.list.action";
@@ -10,6 +8,29 @@ import { pagination } from "../../../constant/app.constant";
 import ApiLevel from "../../../api/api.level";
 import ApiLecturer from "../../../api/api.lecturer";
 import "../../../pages/admin/select-custom.css";
+import "../Dashboard/dashboard.css";
+import {
+  Badge,
+  Row,
+  Col,
+  Progress,
+  Dropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem,
+  Card,
+  CardHeader,
+  CardBody,
+  CardFooter,
+  CardTitle,
+  Button,
+  ButtonToolbar,
+  ButtonGroup,
+  ButtonDropdown,
+  Label,
+  Input,
+  Table
+} from "reactstrap";
 
 class ScientificWorkListPage extends Component {
   constructor(props) {
@@ -92,7 +113,6 @@ class ScientificWorkListPage extends Component {
   }
 
   render() {
-    const { isShowDeleteModal } = this.state;
     const {
       scientificWorkPagedList
     } = this.props.scientificWorkPagedListReducer;
@@ -102,15 +122,20 @@ class ScientificWorkListPage extends Component {
       scientificWorkPagedList.sources.length > 0;
     return (
       <div className="animated fadeIn">
-        <ModalConfirm
-          clickOk={this.deleteScientificWork}
-          isShowModal={isShowDeleteModal}
-          toggleModal={this.toggleDeleteModal}
-        />
-
         <Row>
+          <CardBody>
+            <img
+              src="https://due.udn.vn/portals/_default/skins/dhkt/img/front/logo.png"
+              alt="logochichido"
+            />
+          </CardBody>
+        </Row>
+        <Row className="nckh">
           <Col xs="12">
             <div className="flex-container header-table">
+              <Label className="label label-default">
+                NGHIÊN CỨU KHOA HỌC CẤP BỘ
+              </Label>
               <input
                 onChange={this.onSearchChange}
                 className="form-control form-control-sm"

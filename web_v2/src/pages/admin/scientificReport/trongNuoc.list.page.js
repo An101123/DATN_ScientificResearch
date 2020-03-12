@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Row, Col, Table } from "reactstrap";
 import moment from "moment";
 import Pagination from "../../../components/pagination/Pagination";
 import lodash from "lodash";
@@ -9,6 +8,29 @@ import { pagination } from "../../../constant/app.constant";
 import ApiScientificReportType from "../../../api/api.scientificReportType";
 import ApiLecturer from "../../../api/api.lecturer";
 import "../../../pages/admin/select-custom.css";
+import "../Dashboard/dashboard.css";
+import {
+  Badge,
+  Row,
+  Col,
+  Progress,
+  Dropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem,
+  Card,
+  CardHeader,
+  CardBody,
+  CardFooter,
+  CardTitle,
+  Button,
+  ButtonToolbar,
+  ButtonGroup,
+  ButtonDropdown,
+  Label,
+  Input,
+  Table
+} from "reactstrap";
 
 class ScientificReportListPage extends Component {
   constructor(props) {
@@ -98,8 +120,19 @@ class ScientificReportListPage extends Component {
     return (
       <div className="animated fadeIn">
         <Row>
+          <CardBody>
+            <img
+              src="https://due.udn.vn/portals/_default/skins/dhkt/img/front/logo.png"
+              alt="logochichido"
+            />
+          </CardBody>
+        </Row>
+        <Row className="nckh">
           <Col xs="12">
             <div className="flex-container header-table">
+              <Label className="label label-default">
+                BÀI BÁO, BÁO CÁO KHOA HỌC TRONG NƯỚC{" "}
+              </Label>
               <input
                 onChange={this.onSearchChange}
                 className="form-control form-control-sm"
