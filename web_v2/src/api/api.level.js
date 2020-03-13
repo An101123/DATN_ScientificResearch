@@ -21,4 +21,10 @@ export default class ApiLevel {
   static deleteLevel(levelId) {
     return RequestHelper.delete(appConfig.apiUrl + `levels/${levelId}`);
   }
+
+  static getScientificWorksByLevel(levelId) {
+    return RequestHelper.get(
+      appConfig.apiUrl + `levels/${levelId}/scientificWorks`
+    );
+  }
 }

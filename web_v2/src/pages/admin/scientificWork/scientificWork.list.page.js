@@ -42,6 +42,7 @@ class ScientificWorkListPage extends Component {
       itemId: null,
       levels: [],
       lecturers: [],
+      scientificWorks: [],
       params: {
         skip: pagination.initialPage,
         take: pagination.defaultTake
@@ -115,6 +116,12 @@ class ScientificWorkListPage extends Component {
       this.setState({ lecturers: values });
     });
   };
+
+  getScientificWorksListById = async levelId => {
+    var list = await ApiLevel.getScientificWorksByLevel(levelId);
+    this.setState({ scientificWorks: list });
+  };
+
   componentDidMount() {
     this.getScientificWorkList();
     this.getLevelList();
@@ -122,6 +129,15 @@ class ScientificWorkListPage extends Component {
   }
 
   render() {
+    const {
+      isShowDeleteModal,
+      isShowInfoModal,
+      item,
+      itemId,
+      levels,
+      lecturers,
+      scientificWorks
+    } = this.state;
     const {
       scientificWorkPagedList
     } = this.props.scientificWorkPagedListReducer;
@@ -140,38 +156,19 @@ class ScientificWorkListPage extends Component {
           </CardBody>
         </Row>
         <Row className="gioithieu">
-          <Col xs="12" sm="6" lg="3">
-            <Card className="text-white bg-primary">
-              <CardBody className="pb-0">
-                <h4 className="mb-0">9.823</h4>
-                <p>NCKH cấp Nhà nước</p>
-              </CardBody>
-            </Card>
-          </Col>
-          <Col xs="12" sm="6" lg="3">
-            <Card className="text-white bg-primary">
-              <CardBody className="pb-0">
-                <h4 className="mb-0">9.823</h4>
-                <p>NCKH cấp Bộ</p>
-              </CardBody>
-            </Card>
-          </Col>
-          <Col xs="12" sm="6" lg="3">
-            <Card className="text-white bg-primary">
-              <CardBody className="pb-0">
-                <h4 className="mb-0">9.823</h4>
-                <p>NCKH cấp ĐHĐN</p>
-              </CardBody>
-            </Card>
-          </Col>{" "}
-          <Col xs="12" sm="6" lg="3">
-            <Card className="text-white bg-primary">
-              <CardBody className="pb-0">
-                <h4 className="mb-0">9.823</h4>
-                <p>NCKH cấp Trường</p>
-              </CardBody>
-            </Card>
-          </Col>
+          {levels.length > 0 &&
+            levels.map(level => {
+              return (
+                <Col xs="12" sm="6" lg="3">
+                  <Card className="text-white bg-primary">
+                    <CardBody className="pb-0">
+                      <h4 className="mb-0">.823</h4>
+                      <p> NCKH Cấp {level.name}</p>
+                    </CardBody>
+                  </Card>
+                </Col>
+              );
+            })}
         </Row>
         <Row className="nckh">
           <Col xs="12">

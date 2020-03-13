@@ -65,5 +65,12 @@ namespace Api.Controllers
             var response = await _levelService.DeleteLevelAsync(id);
             return new CustomActionResult(response);
         }
+
+        [HttpGet("{id}/scientificWorks")]
+        public async Task<IActionResult> GetScientificWorksById(Guid id)
+        {
+            var level = await _levelService.GetScientificWorkByLevelIdAsync(id);
+            return Ok(level);
+        }
     }
 }

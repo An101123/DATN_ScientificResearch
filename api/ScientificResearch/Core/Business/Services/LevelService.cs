@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using ScientificResearch.Core.Business.Models.Base;
 using ScientificResearch.Core.Business.Models.Levels;
+using ScientificResearch.Core.Business.Models.ScientificWorks;
 using ScientificResearch.Core.Business.Reflections;
 using ScientificResearch.Core.Common.Constants;
 using ScientificResearch.Core.DataAccess.Repository.Base;
@@ -21,6 +22,7 @@ namespace ScientificResearch.Core.Business.Services
         Task<ResponseModel> CreateLevelAsync(LevelManageModel levelManagerModel);
         Task<ResponseModel> UpdateLevelAsync(Guid id, LevelManageModel levelManagerModel);
         Task<ResponseModel> DeleteLevelAsync(Guid id);
+        Task<ResponseModel> GetScientificWorkByLevelIdAsync(Guid? id);
     }
     public class LevelService : ILevelService
     {
@@ -159,5 +161,30 @@ namespace ScientificResearch.Core.Business.Services
         {
             return await _repository.DeleteAsync(id);
         }
+
+        public async Task<ResponseModel> GetScientificWorkByLevelIdAsync(Guid? id)
+        {
+            var level = await GetAll()
+                .Include(x => x.ScientificWorks)
+                .FirstOrDefaultAsync(x => x.Id == id);
+            if (level.ScientificWorks == null)
+            {
+                return new ResponseModel
+                {
+                    StatusCode = System.Net.HttpStatusCode.NotFound,
+                    Message = "This level has no ScientificWork"
+                };
+            }
+            else
+            {
+                List<ScientificWorkViewModel> scientificWorks = level.ScientificWorks.Select(x => new ScientificWorkViewModel(x)).ToList();
+                return new ResponseModel
+                {
+                    StatusCode = System.Net.HttpStatusCode.OK,
+                    Data = scientificWorks
+                };
+            }
+        }
+
     }
 }
