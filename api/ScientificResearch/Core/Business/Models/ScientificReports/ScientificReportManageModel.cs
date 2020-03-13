@@ -19,6 +19,9 @@ namespace ScientificResearch.Core.Business.Models.ScientificReports
 
         public Guid LecturerId { get; set; }
 
+        public DateTime Time { get; set; }
+
+
         //public Guid UserId { get; set; }
 
 
@@ -28,6 +31,7 @@ namespace ScientificResearch.Core.Business.Models.ScientificReports
             scientificReport.Content = Content;
             scientificReport.ScientificReportTypeId = ScientificReportTypeId;
             scientificReport.LecturerId = LecturerId;
+            scientificReport.Time = Time;
             //scientificReport.UserId = UserId;
         }
 

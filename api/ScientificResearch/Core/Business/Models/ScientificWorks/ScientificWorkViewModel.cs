@@ -23,6 +23,7 @@ namespace ScientificResearch.Core.Business.Models.ScientificWorks
                 Id = scientificWork.Id;
                 Name = scientificWork.Name;
                 Content = scientificWork.Content;
+                Time = scientificWork.Time;
                 Level = new LevelViewModel(scientificWork.Level);
                 Lecturer = new LecturerViewModel(scientificWork.Lecturer);
                 //User = new UserViewModel(scientificWork.User);
@@ -34,6 +35,8 @@ namespace ScientificResearch.Core.Business.Models.ScientificWorks
         public string Name { get; set; }
 
         public string Content { get; set; }
+
+        public DateTime Time { get; set; }
 
         public LevelViewModel Level { get; set; }
 

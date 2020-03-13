@@ -15,6 +15,8 @@ namespace ScientificResearch.Core.Business.Services
 {
     public interface INewsService
     {
+        Task<List<NewsViewModel>> GetAllNews();
+
         Task<PagedList<NewsViewModel>> ListNewsAsync(RequestListViewModel requestListViewModel);
         Task<News> GetNewsByIdAsync(Guid? id);
         Task<ResponseModel> CreateNewsAsync(NewsManageModel newsManageModel);
@@ -31,6 +33,11 @@ namespace ScientificResearch.Core.Business.Services
 
         #region private method
 
+        public async Task<List<NewsViewModel>> GetAllNews()
+        {
+            var list = await GetAll().Select(x => new NewsViewModel(x)).ToListAsync();
+            return list;
+        }
         private IQueryable<News> GetAll()
         {
             return _newsRepository.GetAll().Where(i => !i.RecordDeleted);

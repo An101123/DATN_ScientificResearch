@@ -19,6 +19,8 @@ namespace ScientificResearch.Core.Business.Models.ScientificWorks
 
         public Guid LecturerId { get; set; }
 
+        public DateTime Time { get; set; }
+
         //public Guid UserId { get; set; }
 
         public void GetScientificWorkFromModel(ScientificWork scientificWork)
@@ -27,6 +29,7 @@ namespace ScientificResearch.Core.Business.Models.ScientificWorks
             scientificWork.Content = Content;
             scientificWork.LevelId = LevelId;
             scientificWork.LecturerId = LecturerId;
+            scientificWork.Time = Time;
             //scientificWork.UserId = UserId;
         }
 

@@ -23,6 +23,7 @@ namespace ScientificResearch.Core.Business.Models.ScientificReports
                 Id = scientificReport.Id;
                 Name = scientificReport.Name;
                 Content = scientificReport.Content;
+                Time = scientificReport.Time;
                 ScientificReportType = new ScientificReportTypeViewModel(scientificReport.ScientificReportType);
                 Lecturer = new LecturerViewModel(scientificReport.Lecturer);
                 //User = new UserViewModel(scientificReport.User);
@@ -33,6 +34,8 @@ namespace ScientificResearch.Core.Business.Models.ScientificReports
         public string Name { get; set; }
 
         public string Content { get; set; }
+
+        public DateTime Time { get; set; }
 
         public ScientificReportTypeViewModel ScientificReportType { get; set; }
 

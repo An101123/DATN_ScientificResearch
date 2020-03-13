@@ -22,6 +22,12 @@ namespace ScientificResearch.Controllers
         {
             _newsService = newsService;
         }
+        [HttpGet("all")]
+        public async Task<IActionResult> GetAllNews()
+        {
+            var news = await _newsService.GetAllNews();
+            return Ok(news);
+        }
 
         [HttpGet]
         public async Task<IActionResult> GetAll([FromQuery] RequestListViewModel requestListViewModel)

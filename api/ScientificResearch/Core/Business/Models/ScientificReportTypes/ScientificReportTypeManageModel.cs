@@ -13,6 +13,7 @@ namespace ScientificResearch.Core.Business.Models.ScientificReportTypes
 
         public int Score { get; set; }
 
+
         public void GetScientificReportTypeFromModel(ScientificReportType scientificReportType)
         {
             scientificReportType.Name = Name;
