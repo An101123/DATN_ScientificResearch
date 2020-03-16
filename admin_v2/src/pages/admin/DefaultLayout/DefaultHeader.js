@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-// import { Link } from 'react-router-dom'
 import {
   Badge,
   DropdownItem,
@@ -17,7 +16,6 @@ import {
   AppNavbarBrand,
   AppSidebarToggler
 } from "@coreui/react";
-import logo from "../../../assets/img/brand/logo.svg";
 import sygnet from "../../../assets/img/brand/sygnet.svg";
 
 const propTypes = {
