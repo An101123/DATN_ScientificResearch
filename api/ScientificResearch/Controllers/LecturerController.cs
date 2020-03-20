@@ -64,14 +64,14 @@ namespace ScientificResearch.Controllers
             return new CustomActionResult(response);
         }
 
-        [HttpGet("{id}/bookings")]
+        [HttpGet("{id}/ScientificWork")]
         public async Task<IActionResult> GetAllScientificWorkByLecturerId(Guid id)
         {
             var scientificWorks = await _lecturerService.GetScientificWorkByLecturerIdAsync(id);
             return Ok(scientificWorks);
         }
 
-        [HttpGet("{id}/orders")]
+        [HttpGet("{id}/ScientificReport")]
         public async Task<IActionResult> GetAllScientificReportByLecturerId(Guid id)
         {
             var scientificReports = await _lecturerService.GetScientificReportByLecturerIdAsync(id);

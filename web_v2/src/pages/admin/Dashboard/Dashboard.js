@@ -87,14 +87,14 @@ import React, { Component } from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 import { Container } from "reactstrap";
 import Logo from "../Dashboard/components/logo";
-import TinTuc from "../Dashboard/components/tintuc";
+import TrangChu from "../Dashboard/components/trangchu";
 
 class Dashboard extends Component {
   render() {
     return (
       <div className="app">
         <Logo />
-        <TinTuc />
+        <TrangChu />
       </div>
     );
   }

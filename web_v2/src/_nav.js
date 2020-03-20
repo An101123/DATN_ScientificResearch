@@ -16,23 +16,28 @@ export default {
       children: [
         {
           name: "NCKH các cấp",
-          url: "/scientificWorks"
+          url: "/scientificWorks",
+          icon: "fa fa-angle-right"
         },
         {
           name: "NCKH cấp Nhà Nước",
-          url: "/NCKHCapNhaNuoc"
+          url: "/NCKHCapNhaNuoc",
+          icon: "fa fa-angle-right"
         },
         {
           name: "NCKH cấp Bộ",
-          url: "/NCKHCapBo"
+          url: "/NCKHCapBo",
+          icon: "fa fa-angle-right"
         },
         {
           name: "NCKH cấp ĐHĐN",
-          url: "/NCKHCapDHDN"
+          url: "/NCKHCapDHDN",
+          icon: "fa fa-angle-right"
         },
         {
           name: "NCKH cấp Trường",
-          url: "/NCKHCapTruong"
+          url: "/NCKHCapTruong",
+          icon: "fa fa-angle-right"
         }
       ]
     },
@@ -42,15 +47,18 @@ export default {
       children: [
         {
           name: "Bài báo-Báo cáo",
-          url: "/scientificReports"
+          url: "/scientificReports",
+          icon: "fa fa-angle-right"
         },
         {
           name: "Trong nước",
-          url: "/BaoCaoKHTrongNuoc"
+          url: "/BaoCaoKHTrongNuoc",
+          icon: "fa fa-angle-right"
         },
         {
           name: "Quốc tế",
-          url: "/BaoCaoKHQuocTe"
+          url: "/BaoCaoKHQuocTe",
+          icon: "fa fa-angle-right"
         }
       ]
     },

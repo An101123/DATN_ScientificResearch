@@ -45,7 +45,10 @@ class Login extends Component {
       this.props.history.push("/");
     } catch (err) {
       const message = lodash.get(err, "response.data.error");
-      this.setState({ loading: false, error: message });
+      this.setState({
+        loading: false,
+        error: "Sai tên đăng nhập hoặc mật khẩu"
+      });
     }
   };
 
@@ -56,6 +59,12 @@ class Login extends Component {
     let user = Object.assign({}, this.state.user);
     user[attr] = value;
     this.setState({ user });
+  };
+
+  keyPressed = event => {
+    if (event.key === "Enter") {
+      this.onLogin();
+    }
   };
 
   render() {
@@ -85,6 +94,7 @@ class Login extends Component {
                         placeholder="Tên đăng nhập"
                         autoComplete="email"
                         onChange={this.onChange}
+                        onKeyPress={this.keyPressed}
                       />
                     </InputGroup>
                     <InputGroup className="mb-4">
@@ -99,6 +109,7 @@ class Login extends Component {
                         placeholder="Mật khẩu"
                         autoComplete="password"
                         onChange={this.onChange}
+                        onKeyPress={this.keyPressed}
                       />
                     </InputGroup>
                     {error && <p style={{ color: "red" }}>{error}</p>}
