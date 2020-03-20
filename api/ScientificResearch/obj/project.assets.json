@@ -8642,27 +8642,20 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\an.tran\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Users\\PC\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\an.tran\\Desktop\\DATN_ScientificResearch\\api\\ScientificResearch\\ScientificResearch.csproj",
+      "projectUniqueName": "C:\\Users\\PC\\Desktop\\DATN_ScientificResearch\\api\\ScientificResearch\\ScientificResearch.csproj",
       "projectName": "ScientificResearch",
-      "projectPath": "C:\\Users\\an.tran\\Desktop\\DATN_ScientificResearch\\api\\ScientificResearch\\ScientificResearch.csproj",
-      "packagesPath": "C:\\Users\\an.tran\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\an.tran\\Desktop\\DATN_ScientificResearch\\api\\ScientificResearch\\obj\\",
+      "projectPath": "C:\\Users\\PC\\Desktop\\DATN_ScientificResearch\\api\\ScientificResearch\\ScientificResearch.csproj",
+      "packagesPath": "C:\\Users\\PC\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\PC\\Desktop\\DATN_ScientificResearch\\api\\ScientificResearch\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\",
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-      ],
       "configFilePaths": [
-        "C:\\Users\\an.tran\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.Fallback.config"
+        "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp3.1"
@@ -8756,7 +8749,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.100\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.200\\RuntimeIdentifierGraph.json"
       }
     }
   }
