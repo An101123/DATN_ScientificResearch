@@ -1,0 +1,6 @@
+.select-custom {
+  width: 100%;
+  height: calc(1.5em + 0.75rem + 2px);
+  border: 1px solid #c4c4c4;
+  border-radius: 0;
+}

@@ -1,0 +1,21 @@
+.custom-file-upload {
+    display: inline-block;
+    cursor: pointer;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+.remove-button {
+    float: right;
+    position: relative;
+    top: 15px;
+    right: 2px;
+    color: #f86c6b;
+}
+
+.img-avatar {
+    position: relative;
+    left: 20px;
+}

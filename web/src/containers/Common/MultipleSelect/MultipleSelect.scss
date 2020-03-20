@@ -1,0 +1,112 @@
+$grey-background: #f5f5f5;
+$grey-border: #ddd;
+$grey-text: #898989;
+$grey-dark: #444;
+$main-light: #d9f2fb;
+$main: #00a9e0;
+
+svg {
+  display: block;
+  width: 1em;
+  height: 1em;
+  fill: currentColor;
+}
+
+.select {
+  position: relative;
+  display: inline-block;
+  height: auto;
+}
+
+.label {
+  display: block;
+}
+
+.selection {
+  position: relative;
+  background: #fff;
+  height: auto;
+}
+
+.value {
+  position: relative;
+  display: inline-block;
+  padding: 4px 10px;
+}
+
+.multiple {
+  padding-right: 30px;
+  margin: 1px 2px;
+  border-radius: 20px;
+  background: $main-light;
+  color: $main;
+}
+
+.delete {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: block;
+  padding: 10px;
+  font-size: 10px;
+  cursor: pointer;
+}
+
+.placeholder {
+  padding: 4px 10px;
+  color: $grey-text;
+}
+
+.arrow {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  display: block;
+  padding: 10px;
+  font-size: 10px;
+  color: $grey-text;
+}
+
+.options {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  margin-top: 2px;
+  border: solid $grey-border;
+  border-width: 0 1px;
+  background: #fff;
+  z-index: 20;
+  opacity: 1;
+}
+
+.option {
+  padding: 10px 15px;
+
+  &.selected {
+    margin: -1px -1px 0;
+    background: $main-light;
+  }
+  
+  &.focused {
+    background: $grey-background;
+  }
+}
+
+.checkbox {
+  content: '';
+  vertical-align: top;
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  padding: 2px;
+  border: 1px solid $grey-border;
+  border-radius: 2px;
+  margin: 2px 12px 0 0;
+  color: #fff;
+  font-size: 10px;
+  
+  .selected & {
+    background: $main;
+  }
+}

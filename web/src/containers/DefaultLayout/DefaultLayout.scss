@@ -1,0 +1,8 @@
+@media (min-width: 992px) {
+    .sidebar-fixed .sidebar {
+        position: fixed;
+        z-index: 1019;
+        width: 200px;
+        height: 100vh;
+    }
+}
