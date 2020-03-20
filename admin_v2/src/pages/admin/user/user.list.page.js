@@ -61,6 +61,7 @@ class UserListPage extends Component {
     let user = {
       username: "",
       password: "",
+      passwordConfirm: "",
       fullName: "",
       email: "",
       gender: "",
@@ -129,6 +130,7 @@ class UserListPage extends Component {
     const {
       username,
       password,
+      passwordConfirm,
       fullName,
       email,
       gender,
@@ -137,6 +139,7 @@ class UserListPage extends Component {
     const user = {
       username,
       password,
+      passwordConfirm,
       fullName,
       email,
       gender,
@@ -157,7 +160,7 @@ class UserListPage extends Component {
       id,
       username,
       password,
-      passwordComfirm,
+      passwordConfirm,
       fullName,
       email,
       gender,
@@ -167,7 +170,7 @@ class UserListPage extends Component {
       id,
       username,
       password,
-      passwordComfirm,
+      passwordConfirm,
       fullName,
       email,
       gender,
@@ -203,18 +206,18 @@ class UserListPage extends Component {
     }
   };
 
-  onSubmit(e) {
-    e.preventDefault();
-    this.form.validateAll();
-    this.saveUser();
-  }
-
   onDateOfBirthChange = el => {
     let inputValue = el._d;
     let item = Object.assign({}, this.state.item);
     item["dateOfBirth"] = inputValue;
     this.setState({ item });
   };
+
+  onSubmit(e) {
+    e.preventDefault();
+    this.form.validateAll();
+    this.saveUser();
+  }
 
   componentDidMount() {
     this.getUserList();
@@ -272,7 +275,22 @@ class UserListPage extends Component {
                         type="password"
                         required={true}
                         value={item.password}
-                        onChange={this.onModelChange}
+                        onChange={this.handlePasswordChange}
+                      />
+                    </FormGroup>
+                  </Col>
+                </Row>
+
+                <Row>
+                  <Col>
+                    <FormGroup>
+                      <ValidationInput
+                        name="password"
+                        title="Nhập lại mật khẩu"
+                        type="password"
+                        required={true}
+                        value={item.passwordConfirm}
+                        onChange={this.handleConfirmPassword}
                       />
                     </FormGroup>
                   </Col>

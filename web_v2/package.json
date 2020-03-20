@@ -60,6 +60,7 @@
     "react-router-config": "^4.4.0-beta.6",
     "react-router-dom": "^4.3.1",
     "react-select": "^2.4.2",
+    "react-slideshow-image": "^1.4.0",
     "react-test-renderer": "^16.6.3",
     "react-to-print": "^2.1.2",
     "react-toastify": "^4.5.2",
