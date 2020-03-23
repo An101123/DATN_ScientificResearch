@@ -22,6 +22,8 @@ class UserListPage extends Component {
     this.state = {
       isShowDeleteModal: false,
       isShowInfoModal: false,
+      isConfirm: true,
+      isChangePassword: false,
       item: {},
       itemId: null,
       params: {
@@ -40,9 +42,11 @@ class UserListPage extends Component {
   };
 
   toggleModalInfo = (item, title) => {
+    let updatingItem = Object.assign({}, item);
+    updatingItem.passwordConfirm = updatingItem.password;
     this.setState(prevState => ({
       isShowInfoModal: !prevState.isShowInfoModal,
-      item: item || {},
+      item: updatingItem || {},
       formTitle: title
     }));
   };
@@ -67,11 +71,19 @@ class UserListPage extends Component {
       gender: "",
       dateOfBirth: null
     };
+    this.setState({ isConfirm: true, isChangePassword: true });
     this.toggleModalInfo(user, title);
   };
 
   showUpdateModal = item => {
     let title = "Chỉnh sửa tài khoản";
+    this.setState({ isChangePassword: false });
+    this.toggleModalInfo(item, title);
+  };
+
+  showChangePassword = item => {
+    let title = "Đổi mật khẩu";
+    this.setState({ isChangePassword: true });
     this.toggleModalInfo(item, title);
   };
 
@@ -125,8 +137,6 @@ class UserListPage extends Component {
   };
 
   addUser = async () => {
-    console.log("state ==================");
-    console.log(this.state);
     const {
       username,
       password,
@@ -136,22 +146,26 @@ class UserListPage extends Component {
       gender,
       dateOfBirth
     } = this.state.item;
-    const user = {
-      username,
-      password,
-      passwordConfirm,
-      fullName,
-      email,
-      gender,
-      dateOfBirth
-    };
-    try {
-      await ApiUser.postUser(user);
-      this.toggleModalInfo();
-      this.getUserList();
-      toastSuccess("Tạo mới thành công");
-    } catch (err) {
-      toastError(err);
+    if (password !== passwordConfirm) {
+      this.setState({ isConfirm: false });
+    } else {
+      this.setState({ isConfirm: true });
+      const user = {
+        username,
+        password,
+        fullName,
+        email,
+        gender,
+        dateOfBirth
+      };
+      try {
+        await ApiUser.postUser(user);
+        this.toggleModalInfo();
+        this.getUserList();
+        toastSuccess("Tạo mới thành công");
+      } catch (err) {
+        toastError(err);
+      }
     }
   };
 
@@ -164,25 +178,29 @@ class UserListPage extends Component {
       fullName,
       email,
       gender,
-      DateOfBirth
+      dateOfBirth
     } = this.state.item;
-    const user = {
-      id,
-      username,
-      password,
-      passwordConfirm,
-      fullName,
-      email,
-      gender,
-      DateOfBirth
-    };
-    try {
-      await ApiUser.updateUser(user);
-      this.toggleModalInfo();
-      this.getUserList();
-      toastSuccess("Chỉnh sửa thành công");
-    } catch (err) {
-      toastError(err);
+    if (password !== passwordConfirm) {
+      this.setState({ isConfirm: false });
+    } else {
+      this.setState({ isConfirm: true });
+      const user = {
+        id,
+        username,
+        password,
+        fullName,
+        email,
+        gender,
+        dateOfBirth
+      };
+      try {
+        await ApiUser.updateUser(user);
+        this.toggleModalInfo();
+        this.getUserList();
+        toastSuccess("Chỉnh sửa thành công");
+      } catch (err) {
+        toastError(err);
+      }
     }
   };
 
@@ -224,7 +242,13 @@ class UserListPage extends Component {
   }
 
   render() {
-    const { isShowDeleteModal, isShowInfoModal, item } = this.state;
+    const {
+      isShowDeleteModal,
+      isShowInfoModal,
+      isChangePassword,
+      isConfirm,
+      item
+    } = this.state;
     const { userPagedList } = this.props.userPagedListReducer;
     const { sources, pageIndex, totalPages } = userPagedList;
     console.log(sources);
@@ -251,128 +275,159 @@ class UserListPage extends Component {
                   this.form = c;
                 }}
               >
-                <Row>
-                  <Col>
-                    <FormGroup>
-                      <ValidationInput
-                        name="username"
-                        title="Tên đăng nhập"
-                        type="text"
-                        required={true}
-                        value={item.username}
-                        onChange={this.onModelChange}
-                      />
-                    </FormGroup>
-                  </Col>
-                </Row>
-
-                <Row>
-                  <Col>
-                    <FormGroup>
-                      <ValidationInput
-                        name="password"
-                        title="Mật khẩu"
-                        type="password"
-                        required={true}
-                        value={item.password}
-                        onChange={this.handlePasswordChange}
-                      />
-                    </FormGroup>
-                  </Col>
-                </Row>
-
-                <Row>
-                  <Col>
-                    <FormGroup>
-                      <ValidationInput
-                        name="password"
-                        title="Nhập lại mật khẩu"
-                        type="password"
-                        required={true}
-                        value={item.passwordConfirm}
-                        onChange={this.handleConfirmPassword}
-                      />
-                    </FormGroup>
-                  </Col>
-                </Row>
-
-                <Row>
-                  <Col>
-                    <FormGroup>
-                      <ValidationInput
-                        name="email"
-                        title="Email"
-                        type="text"
-                        required={true}
-                        value={item.email}
-                        onChange={this.onModelChange}
-                      />
-                    </FormGroup>
-                  </Col>
-                </Row>
-
-                <Row>
-                  <Col>
-                    <FormGroup>
-                      <ValidationInput
-                        name="fullName"
-                        title="Họ và tên"
-                        type="text"
-                        required={true}
-                        value={item.fullName}
-                        onChange={this.onModelChange}
-                      />
-                    </FormGroup>
-                  </Col>
-                </Row>
-                <Row>
-                  <Col>
-                    <FormGroup>
-                      <Label for="example"> Ngày sinh </Label>
-                      <Datetime
-                        required={true}
-                        defaultValue={
-                          item.dateOfBirth
-                            ? moment(item.dateOfBirth)
-                                .add(7, "h")
-                                .format("DD-MM-YYYY")
-                            : ""
-                        }
-                        dateFormat="DD-MM-YYYY"
-                        timeFormat=""
-                        onChange={this.onDateOfBirthChange}
-                      />
-                    </FormGroup>
-                  </Col>
-                </Row>
-
-                <Row>
-                  <Col>
-                    <Label>Giới tính</Label> {console.log(this.state.item)}
-                    <FormGroup>
-                      <div>
-                        <select
-                          className="select-custom"
-                          name="gender"
-                          required={false}
+                {!isChangePassword && (
+                  <Row>
+                    <Col>
+                      <FormGroup>
+                        <ValidationInput
+                          name="username"
+                          title="Tên đăng nhập"
+                          type="text"
+                          required={true}
+                          value={item.username}
                           onChange={this.onModelChange}
-                        >
-                          {gender.GENDER.map((item, i) => {
-                            return (
-                              <option
-                                selected={this.state.item.gender === item.name}
-                                value={item.id}
-                                key={i}
-                              >
-                                {item.name}
-                              </option>
-                            );
-                          })}
-                        </select>
-                      </div>
-                    </FormGroup>
-                  </Col>
-                </Row>
+                        />
+                      </FormGroup>
+                    </Col>
+                  </Row>
+                )}
+
+                {isChangePassword && (
+                  <div>
+                    <Row>
+                      <Col>
+                        <FormGroup>
+                          <ValidationInput
+                            name="passwordOld"
+                            title="Mật khẩu cũ"
+                            type="password"
+                            required={true}
+                            value=""
+                            onChange={this.onModelChange}
+                          />
+                        </FormGroup>
+                      </Col>
+                    </Row>
+                    <Row>
+                      <Col>
+                        <FormGroup>
+                          <ValidationInput
+                            name="password"
+                            title="Mật khẩu mới"
+                            type="password"
+                            required={true}
+                            value=""
+                            onChange={this.onModelChange}
+                          />
+                        </FormGroup>
+                      </Col>
+                    </Row>
+
+                    <Row>
+                      <Col>
+                        <FormGroup>
+                          <ValidationInput
+                            name="passwordConfirm"
+                            title="Nhập lại mật khẩu"
+                            type="password"
+                            required={true}
+                            value=""
+                            onChange={this.onModelChange}
+                          />
+                          {!isConfirm && (
+                            <Label className="form-text text-danger">
+                              Mật khẩu không khớp *
+                            </Label>
+                          )}
+                        </FormGroup>
+                      </Col>
+                    </Row>
+                  </div>
+                )}
+
+                {!isChangePassword && (
+                  <div>
+                    <Row>
+                      <Col>
+                        <FormGroup>
+                          <ValidationInput
+                            name="email"
+                            title="Email"
+                            type="text"
+                            required={true}
+                            value={item.email}
+                            onChange={this.onModelChange}
+                          />
+                        </FormGroup>
+                      </Col>
+                    </Row>
+
+                    <Row>
+                      <Col>
+                        <FormGroup>
+                          <ValidationInput
+                            name="fullName"
+                            title="Họ và tên"
+                            type="text"
+                            required={true}
+                            value={item.fullName}
+                            onChange={this.onModelChange}
+                          />
+                        </FormGroup>
+                      </Col>
+                    </Row>
+                    <Row>
+                      <Col>
+                        <FormGroup>
+                          <Label for="example"> Ngày sinh </Label>
+                          <Datetime
+                            required={true}
+                            defaultValue={
+                              item.dateOfBirth
+                                ? moment(item.dateOfBirth)
+                                    .add(7, "h")
+                                    .format("DD-MM-YYYY")
+                                : ""
+                            }
+                            dateFormat="DD-MM-YYYY"
+                            timeFormat=""
+                            onChange={this.onDateOfBirthChange}
+                          />
+                        </FormGroup>
+                      </Col>
+                    </Row>
+
+                    <Row>
+                      <Col>
+                        <Label>Giới tính</Label> {console.log(this.state.item)}
+                        <FormGroup>
+                          <div>
+                            <select
+                              className="select-custom"
+                              name="gender"
+                              required={false}
+                              onChange={this.onModelChange}
+                            >
+                              {gender.GENDER.map((item, i) => {
+                                return (
+                                  <option
+                                    selected={
+                                      this.state.item.gender === item.name
+                                    }
+                                    value={item.id}
+                                    key={i}
+                                  >
+                                    {item.name}
+                                  </option>
+                                );
+                              })}
+                            </select>
+                          </div>
+                        </FormGroup>
+                      </Col>
+                    </Row>
+                  </div>
+                )}
 
                 <div className="text-center">
                   <Button color="danger" type="submit">
@@ -434,6 +489,14 @@ class UserListPage extends Component {
                             onClick={() => this.showUpdateModal(item)}
                           >
                             Sửa
+                          </Button>
+                          <Button
+                            className="btn-sm"
+                            style={{ marginLeft: 15, marginRight: 15 }}
+                            color="success"
+                            onClick={() => this.showChangePassword(item)}
+                          >
+                            Đổi mật khẩu
                           </Button>
                           <Button
                             className="btn-sm"

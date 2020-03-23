@@ -11,7 +11,6 @@ import {
   UncontrolledDropdown
 } from "reactstrap";
 import PropTypes from "prop-types";
-
 import {
   AppAsideToggler,
   AppNavbarBrand,
@@ -31,24 +30,24 @@ class DefaultHeader extends Component {
     const { children, ...attributes } = this.props;
 
     return (
-      <React.Fragment className="hihi">
+      <React.Fragment>
         {/* <AppSidebarToggler className="d-lg-none" display="md" mobile /> */}
         {/* <AppSidebarToggler className="d-md-down-none" display="lg" /> */}
         <AppNavbarBrand
-          full={{
-            src:
-              "https://due.udn.vn/portals/_default/skins/dhkt/img/front/logo.png",
-            width: 153,
-            height: 50,
+        // full={{
+        //   src:
+        //     "https://due.udn.vn/portals/_default/skins/dhkt/img/front/logo.png",
+        //   width: 153,
+        //   height: 50,
 
-            alt: "CoreUI Logo"
-          }}
-          minimized={{
-            src: sygnet,
-            width: 30,
-            height: 30,
-            alt: "CoreUI Logo"
-          }}
+        //   alt: "CoreUI Logo"
+        // }}
+        // minimized={{
+        //   src: sygnet,
+        //   width: 30,
+        //   height: 30,
+        //   alt: "CoreUI Logo"
+        // }}
         />
 
         {/* <Nav className="d-md-down-none" navbar>

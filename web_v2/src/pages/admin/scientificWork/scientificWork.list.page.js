@@ -163,7 +163,7 @@ class ScientificWorkListPage extends Component {
                   <Card className="text-white bg-primary">
                     <CardBody className="pb-0">
                       <h4 className="mb-0">.823</h4>
-                      <p> NCKH Cấp {level.name}</p> 
+                      <p> NCKH Cấp {level.name}</p>
                     </CardBody>
                   </Card>
                 </Col>

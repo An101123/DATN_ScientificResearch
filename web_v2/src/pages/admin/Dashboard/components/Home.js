@@ -42,7 +42,7 @@ const zoomOutProperties = {
   arrows: true
 };
 
-class TrangChu extends Component {
+class Home extends Component {
   constructor(props) {
     super(props);
 
@@ -73,14 +73,21 @@ class TrangChu extends Component {
   }
   render() {
     return (
-      <div className="slide-container">
-        <Zoom {...zoomOutProperties}>
-          {images.map((each, index) => (
-            <img key={index} style={{ width: "100%" }} src={each} />
-          ))}
-        </Zoom>
-      </div>
+      <Row>
+        <Col md="10">
+          <div className="slide-container">
+            <Zoom {...zoomOutProperties}>
+              {images.map((each, index) => (
+                <img key={index} style={{ width: "100%" }} src={each} />
+              ))}
+            </Zoom>
+          </div>
+        </Col>
+        <Col md="2">
+          
+        </Col>
+      </Row>
     );
   }
 }
-export default TrangChu;
+export default Home;

@@ -1,6 +1,6 @@
 .logokinhte {
   width: 700px;
-  height: 120px;
+  height: 100px;
   margin-top: 0px;
 }
 
@@ -17,7 +17,7 @@
 
 .slide-container {
   width: 70%;
-  margin: auto;
+  margin: 10px;
 }
 
 h3 {
@@ -60,3 +60,6 @@ h3 {
   margin: 0;
   background: #adceed;
 }
+/* ListNews */
+
+

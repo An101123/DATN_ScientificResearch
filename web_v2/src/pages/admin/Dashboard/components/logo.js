@@ -1,20 +1,4 @@
-// import React, { Component } from "react";
-// import { Row } from "reactstrap";
-
-// class Dashboard extends Component {
-//   constructor(props) {
-//     super(props);
-//     this.state = {};
-//   }
-
-//   render() {
-//     return <div className="animated fadeIn"></div>;
-//   }
-// }
-
-// export default Dashboard;
 import React, { Component } from "react";
-import { Bar, Line } from "react-chartjs-2";
 import "../../Dashboard/dashboard.css";
 import {
   Badge,
