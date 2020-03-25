@@ -71,7 +71,7 @@ class UserListPage extends Component {
       gender: "",
       dateOfBirth: null
     };
-    this.setState({ isConfirm: true, isChangePassword: true });
+    this.setState({ isConfirm: true, isChangePassword: false });
     this.toggleModalInfo(user, title);
   };
 
@@ -276,33 +276,30 @@ class UserListPage extends Component {
                 }}
               >
                 {!isChangePassword && (
-                  <Row>
-                    <Col>
-                      <FormGroup>
-                        <ValidationInput
-                          name="username"
-                          title="Tên đăng nhập"
-                          type="text"
-                          required={true}
-                          value={item.username}
-                          onChange={this.onModelChange}
-                        />
-                      </FormGroup>
-                    </Col>
-                  </Row>
-                )}
-
-                {isChangePassword && (
                   <div>
                     <Row>
                       <Col>
                         <FormGroup>
                           <ValidationInput
-                            name="passwordOld"
-                            title="Mật khẩu cũ"
-                            type="password"
+                            name="username"
+                            title="Tên đăng nhập"
+                            type="text"
                             required={true}
-                            value=""
+                            value={item.username}
+                            onChange={this.onModelChange}
+                          />
+                        </FormGroup>
+                      </Col>
+                    </Row>
+                    <Row>
+                      <Col>
+                        <FormGroup>
+                          <ValidationInput
+                            name="email"
+                            title="Email"
+                            type="text"
+                            required={true}
+                            value={item.email}
                             onChange={this.onModelChange}
                           />
                         </FormGroup>
@@ -313,7 +310,7 @@ class UserListPage extends Component {
                         <FormGroup>
                           <ValidationInput
                             name="password"
-                            title="Mật khẩu mới"
+                            title="Mật khẩu"
                             type="password"
                             required={true}
                             value=""
@@ -339,25 +336,6 @@ class UserListPage extends Component {
                               Mật khẩu không khớp *
                             </Label>
                           )}
-                        </FormGroup>
-                      </Col>
-                    </Row>
-                  </div>
-                )}
-
-                {!isChangePassword && (
-                  <div>
-                    <Row>
-                      <Col>
-                        <FormGroup>
-                          <ValidationInput
-                            name="email"
-                            title="Email"
-                            type="text"
-                            required={true}
-                            value={item.email}
-                            onChange={this.onModelChange}
-                          />
                         </FormGroup>
                       </Col>
                     </Row>
@@ -423,6 +401,58 @@ class UserListPage extends Component {
                               })}
                             </select>
                           </div>
+                        </FormGroup>
+                      </Col>
+                    </Row>
+                  </div>
+                )}
+                {isChangePassword && (
+                  <div>
+                    <Row>
+                      <Col>
+                        <FormGroup>
+                          <ValidationInput
+                            name="passwordOld"
+                            title="Mật khẩu cũ"
+                            type="password"
+                            required={true}
+                            value=""
+                            onChange={this.onModelChange}
+                          />
+                        </FormGroup>
+                      </Col>
+                    </Row>
+                    <Row>
+                      <Col>
+                        <FormGroup>
+                          <ValidationInput
+                            name="password"
+                            title="Mật khẩu mới"
+                            type="password"
+                            required={true}
+                            value=""
+                            onChange={this.onModelChange}
+                          />
+                        </FormGroup>
+                      </Col>
+                    </Row>
+
+                    <Row>
+                      <Col>
+                        <FormGroup>
+                          <ValidationInput
+                            name="passwordConfirm"
+                            title="Nhập lại mật khẩu"
+                            type="password"
+                            required={true}
+                            value=""
+                            onChange={this.onModelChange}
+                          />
+                          {!isConfirm && (
+                            <Label className="form-text text-danger">
+                              Mật khẩu không khớp *
+                            </Label>
+                          )}
                         </FormGroup>
                       </Col>
                     </Row>

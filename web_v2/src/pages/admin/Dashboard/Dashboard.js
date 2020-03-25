@@ -9,7 +9,9 @@ class Dashboard extends Component {
       <div className="app">
         <Logo />
         <Home />
-        <ListNews />
+        <ListNews imageUrl="https://icdn8.digitaltrends.com/image/razor-e200s-electric-scooter-1-640x640.jpg">
+          <p>Hihi</p>
+        </ListNews>
       </div>
     );
   }

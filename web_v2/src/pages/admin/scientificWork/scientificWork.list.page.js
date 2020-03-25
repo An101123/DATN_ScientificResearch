@@ -155,7 +155,7 @@ class ScientificWorkListPage extends Component {
             />
           </CardBody>
         </Row>
-        <Row className="gioithieu">
+        {/* <Row className="gioithieu">
           {levels.length > 0 &&
             levels.map(level => {
               return (
@@ -169,7 +169,7 @@ class ScientificWorkListPage extends Component {
                 </Col>
               );
             })}
-        </Row>
+        </Row> */}
         <Row className="nckh">
           <Col xs="12">
             <div className="flex-container header-table">

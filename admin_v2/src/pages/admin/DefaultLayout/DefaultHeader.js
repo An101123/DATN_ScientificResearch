@@ -32,17 +32,21 @@ class DefaultHeader extends Component {
     return (
       <React.Fragment>
         <AppSidebarToggler className="d-lg-none" display="md" mobile />
-        <AppNavbarBrand
-          full={{
-            src:
-              "https://upload.wikimedia.org/wikipedia/commons/2/25/Logo_Kinh_t%E1%BA%BF_%C4%90%C3%A0_N%E1%BA%B5ng.jpg",
+        {/* <AppNavbarBrand>
+     
+        full={{
+          src:
+            // "https://upload.wikimedia.org/wikipedia/commons/2/25/Logo_Kinh_t%E1%BA%BF_%C4%90%C3%A0_N%E1%BA%B5ng.jpg",
 
-            width: 50,
-            height: 50,
-            alt: "CoreUI Logo"
-          }}
-          minimized={{ src: sygnet, width: 30, height: 30, alt: "CoreUI Logo" }}
-        />
+          width: 150,
+          height: 50,
+          alt: "CoreUI Logo"
+        }}
+        minimized={{ src: sygnet, width: 30, height: 30, alt: "CoreUI Logo" }}
+        /> */}
+        <AppNavbarBrand>
+          <h1>Admin</h1>
+        </AppNavbarBrand>
         <AppSidebarToggler className="d-md-down-none" display="lg" />
         {/* <Nav className="d-md-down-none" navbar>
           <NavItem className="px-3">
